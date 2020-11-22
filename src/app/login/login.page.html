@@ -1,0 +1,22 @@
+<ion-content>
+  <div id="dangnhap01">
+    <div class="prevdn" (click)="goback()"><a><img class="imgback" src="../../assets/naptien/icon-prev.jpg" alt="prev" /></a></div>
+      <div class="headerdangnhap01">
+        <!-- <h1>Đăng nhập bằng</h1>
+          <div class="google-facebook">
+            <div class="dn-google"><a href="#"><img src="../../assets/dangnhap/google.jpg" class="imggoogle" alt="google" /><span>Google</span></a></div>
+              <div class="dn-facebook"><a href="#"><img src="../../assets/dangnhap/facebook.jpg" class="imggoogle" alt="facebook" /><span>Facebook</span></a></div>
+          </div>
+          <h2>Hoặc</h2> -->
+          <form class="formLogin">
+          <p class="inputform inputtk"><label>Tài khoản</label><ion-input placeholder="Email hoặc SĐT" class="ioninput" id="sUser"></ion-input></p>
+           <p class="inputform"><label>Mật khẩu</label><ion-input placeholder="Password" type="password" class="ioninput" id="sPass"></ion-input></p>
+          <p class="quenmk"><a href="#">Bạn quên mật khẩu?</a></p>
+         <p class="dangnhapbt"> <input type="button" value="Đăng nhập" (click)="handelLogin()"></p>
+          </form>
+      </div>
+  </div>
+</ion-content>
+<ion-footer no-border transparent>
+  <p class="baomat"><img class="imgbaomat" src="assets/dangnhap/baomat.png" alt="Bảo mật" />Mọi giao dịch trên Happy World đều được bảo mật</p>
+</ion-footer>

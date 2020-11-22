@@ -1,0 +1,7 @@
+{
+  "name": "happyWorld",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

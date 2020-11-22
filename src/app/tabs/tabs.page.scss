@@ -1,0 +1,37 @@
+img{
+    width: 20px;
+    padding-bottom: 4px;
+}
+ion-fab-button::part(native) {
+    box-shadow: none !important;
+    height: 50px;
+    width: 50px;
+  }
+  #btnFab { --ion-color-base: #072b60 !important;}
+  ion-fab{
+      margin-bottom: -13px;
+  }
+.home-page.tab-selected{
+    
+}
+.home-noactive{
+    //padding-left: 8px;
+}
+// .report.tab-selected{
+//     background-color: blue;
+// }
+// .report-noactive{
+//     background-color: lawngreen;
+// }
+// .group-chat.tab-selected{
+//     background-color: gray;
+// }
+// .chat-noactive{
+//     background-color: lightcoral;
+// }
+.persional.tab-selected{
+    
+}
+.persional-noactive{
+    //padding-right: 12px;
+}

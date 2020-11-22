@@ -1,0 +1,312 @@
+@charset "utf-8";
+/* CSS Document */
+@font-face {
+    font-family: 'Vhelven';
+    src:   url('fonts/helveticaneue.ttf') format('truetype');
+}
+@font-face {
+   font-family: 'Vnihbold';
+   src:   url('fonts/helveticaneuebold.ttf') format('truetype');
+}
+ion-content{ padding:0;margin: 0; font-family: 'Vhelven';}
+p, span, th, tr, td{font-family: 'Vhelven';}
+h1, h2, h3, h4, h5, h6, strong, b{font-family: 'Vnihbold';}
+#container{ width: 1245px; padding:0; margin: 0 auto; background: #f8f8f8 url(../assets/trangchu/bg-home.jpg) no-repeat  top}
+#headertop{ padding-top: 35px;
+    overflow: hidden;
+    width: 100%;
+    margin-left: 12px;} 
+.wrapper{ width: 100%; margin: 0 auto;}
+.namemember, .thongbao{ width: 50%;
+    float: left;}
+.namemember{
+    width: 70%;
+}
+.thongbao{
+    width: 30%;
+}
+.avata{ width: 22%; float: left;}
+.informenber{     width: 80%;
+    float: right;}
+.informenber p{    padding: 0;
+    margin: 0px;
+    color: #fff;font-size: 15px;line-height: 20px;}
+.informenber p.staricon{ font-size: 15px}
+.informenber p.staricon span{    padding-top: 12px;
+    padding-bottom: 10px;}
+.count-thongbao{ float: right;    }
+.count-thongbao span{
+    background: url(../assets/trangchu/icon-thongbao.png) no-repeat 22px;
+    background-size: 33px;
+    padding: 11px 23px 15px 40px;
+    color: #fff;
+    font-family: 'Vnihbold';
+    font-size: 9px;
+}
+.row1{    background: #fff;
+    border-radius: 7px;
+    -webkit-box-shadow: -1px 1px 6px -2px rgba(0,0,0,0.75);
+    -moz-box-shadow: -1px 1px 6px -2px rgba(0,0,0,0.75);
+    box-shadow: -1px 1px 6px -2px rgba(0,0,0,0.75); margin-top: 25px;
+    width: 95%;
+    margin: 25px auto;
+    padding-bottom: 10px;
+}
+.taisandautu{    border-bottom: 1px solid #e1e1e1;
+    padding: 3px 5px 0px 21px;}
+.taisandautu h3, .cophieush h3, .row2 li h3, .row3 li h3{ background: url(../assets/trangchu/icon-next.jpg) no-repeat 96%;  background-size: 8px;}
+.taisandautu h3 span{ color: #323232; font-size: 18px;font-family: 'Vnihbold';background: url(../assets/trangchu/icon-tsdautu.jpg) no-repeat left; background-size: 24px; padding: 10px 0 10px 40px; }
+ .cophieush h3 span{color: #323232; font-size: 18px;font-family: 'Vnihbold';background: url(../assets/trangchu/icon-cophieu.jpg) no-repeat left; background-size: 24px; padding: 10px 0 10px 40px;}
+ .cophieush { padding: 3px 5px 0px 21px;}
+  .cophieush td{ font-size: 12px; }
+.cophieush td.numbercp{text-align: left;
+    width: 16%;}
+.cophieush table{    padding: 0 100px;}
+.huongdan-title{background: url(../assets/trangchu/icon-huongdan.jpg) no-repeat 15px; 
+    padding-left: 40px;
+    font-size: 20px;
+    background-size: 21px;}
+.row2, .row3{  background: #fff;
+    border-radius: 8px;
+    margin-top: 30px;
+    width: 95%;
+    margin: 0 auto;}
+.row2 ul, .row3 ul{ padding-lefT: 0px; margin-lefT: 0px; padding-top: 5px; padding-bottom: 5px;}
+.row2 li, .row3 ul li{ list-style: none; border-bottom: 1px solid #e1e1e1 ;padding-left: 20px; }
+.row2 li h3 span{background: url(../assets/trangchu/icon-li1.jpg) no-repeat left;
+    padding-lefT: 38px;
+    font-size: 16px;
+    font-family: 'Vhelven';
+    font-weight: 500;
+    padding-bottom: 5px;
+    padding-top: 5px;
+background-size: 24px;}
+.row2 li.firstli h3 span{background: url(../assets/trangchu/icon-li0.jpg) no-repeat left; background-size: 24px; }
+.row2 li.lastli, .row3 li.lastli{ border-bottom: none}
+h2.duantk-title{background: url(../assets/trangchu/icon-duan.jpg) no-repeat 10px; padding-left: 38px;
+    font-size: 20px; background-size: 24px; }
+.row3 li h3 span{ padding-lefT: 38px;
+    font-size: 16px;
+    font-family: 'Vhelven';
+    font-weight: 500;
+    padding-bottom: 5px;
+    padding-top: 5px; }
+.row3 li.dvgiaitri h3 span{background: url(../assets/trangchu/icon-dvugiaitri.jpg) no-repeat left; background-size: 24px;  }
+.row3 li.nhahang h3 span{background: url(../assets/trangchu/icon-nhahang.jpg) no-repeat left; background-size: 24px; }
+.row3 li.mocat h3 span{background: url(../assets/trangchu/icon-mocat.jpg) no-repeat left; background-size: 24px; }
+.row3 li.moda h3 span{background: url(../assets/trangchu/icon-moda.jpg) no-repeat left; background-size: 24px; }
+.row3 li.vantai h3 span{background: url(../assets/trangchu/icon-vantai.jpg) no-repeat left; background-size: 24px; }
+.row3 li.batds h3 span{background: url(../assets/trangchu/icon-bds.jpg) no-repeat left; background-size: 24px; }
+#controlmenu{ border-top: 1px solid #e1e1e1;    background: #f8f8f8;
+    overflow: hidden; }
+#controlmenu li{ width: 20%; floaT: left;     list-style: none;
+    text-align: CENTER;}
+#controlmenu li a{ text-decoration: none; color:#999999; font-size: 25px; } 
+#controlmenu li.active a{ color: #072b61;}
+#controlmenu li {padding-top: 35px;}
+#controlmenu li.centermenu{ padding-top: 0px}
+/********** css nạp tiền***********/
+#naptien, #huongdan, #dangnhappage, #dangnhap01{width: 100%; padding:0; margin: 0 auto;}
+.headernaptien{ background: #f8f8f8;padding-top: 18px; padding-left: 20px; overflow: hidden}
+.prev-icon{ float: left;width: 10px;}
+.logonaptien{ float: left; text-align: center; margin-right: 5%; width: 90%; float: left;}
+.logonaptien h3{ font-size: 24px;
+    padding: 0;
+    margin-bottom: 0px;}
+.logonaptien p{font-size: 15px;
+    margin-top: 5px;}
+.content-naptien{ background: #f0f0fa; overflow: hidden;    padding-bottom: 50px;}
+.sotiennap{ 
+    border: 1px solid #e1e1e1;
+    font-family: 'Vnihbold';
+    border-radius: 10px;
+    background: #fff url(../assets/trangchu/icon-next.jpg) no-repeat right;
+    background-position-x: 96%;
+    padding: 8px;
+    font-size: 17px;
+    color: #072b61;
+    margin-top: 30px;
+    padding-lefT: 12px;
+background-size: 10px;}
+.sotiennap span{font-size: 17px;
+    margin-bottom: 52px;}
+	.bottom-naptien{background: #f8f8f8;padding-top: 50px;    padding-bottom: 100px;}
+.bottom-naptien p{    margin-top: 0px; color: #072b61;
+    text-align: center;
+    font-size: 15px;}
+.bottom-naptien input::placeholder {
+  color: #d3d3d3; font-size: 40px;
+}
+.bottom-naptien input{line-height: 100px;
+    width: 96%;
+    border: 1px solid #e1e1e1;
+    border-radius: 20px;
+    height: 80px;
+    padding-top: 20px;
+    padding-left: 40px;}
+/********* css hướng dẫn********/
+#huongdan, #dangnhap01{ background: #f8f8f8; overflow: hidden}
+#huongdan h1{ font-size: 55px; text-align: center}
+.menu { background: url(../assets/huongdan/bg-menu.jpg) no-repeat;    padding: 68px 50px;
+    background-size: 100%;}
+#huongdan h2{ font-size: 55px;}
+.content-huongdan{ padding: 0 50px}
+.content-huongdan p{ font-size: 42px; }
+/**********Css đăng nhập 02*************/
+#dangnhappage{ background: #a5a5a5 url(../assets/dangnhap/bg-dangnhap.png) no-repeat top; padding-top: 1200px}
+.headerdangnhap{ text-align: center} 
+.headerdangnhap h1{font-size: 35px;
+    color: #072b61;
+    font-weight: 500;
+    font-family: 'Vhelven';
+    margin: 0;}
+.headerdangnhap p{font-size: 19px;
+    color: #323232;    margin: 0;}
+.formdktk{
+    background: #f8f8f8;
+    border-radius: 30px 30px 0 0;
+    padding: 15px;
+}
+.formdktk h2{ color: #000000;
+    font-size: 23px;
+    text-align: center;
+    padding-top: 25px;}
+.dkgoogle, .dangkybt{ border: 1px solid #7e7e7e;
+    background: #fff;
+    border-radius: 62px;
+    padding: 19px 25px;}
+.btdktk{margin-top: 42px;}
+.btdktk a{      font-size: 15px;  text-decoration: none;
+    color: #7e7e7e;}
+.dkgoogle a span{ background: url(../assets/dangnhap/icon-google.jpg) no-repeat left;      padding: 5px 130px;
+    background-position-x: 20px;}
+.dkmobile{background-image: linear-gradient(to right, #0e59bf , #072c63);  border-radius: 62px; padding: 19px 25px;}
+.dkmobile a{ color: #fff}
+.dkmobile a span{ 
+    background-position-x: 20px;}
+/******** css đăng nhập 01*******/
+#dangnhap01{ padding-bottom: 100px;}
+.prevdn{ padding-top: 20px; padding-lefT: 20px; padding-bottom: 50px;}
+.headerdangnhap01{    text-align: left;
+    width: 100%;
+margin-left: 18px;}
+.headerdangnhap01 h1, .headerdangnhap01 h2{    font-size: 25px;
+    margin: 0;}
+.google-facebook{ margin-top: 50px;
+    overflow: hidden;}
+.dn-google, .dn-facebook{ width: 43%; float: left;    border: 1px solid #e1e1e1;    text-align: center;
+    border-radius: 60px;    padding: 15px 25px;
+}
+.dn-google a, .dn-facebook a{ text-decoration: none; font-size: 19px; color: #323232; }
+.dn-facebook{ margin-left: 4%}
+.headerdangnhap01 h2{ padding-top: 50px; padding-bottom: 50px}
+.headerdangnhap01 td{ font-size: 30px;}
+.inputform label{ width: 19%; float: left; font-size: 14px; font-weight: bold;} 
+.inputform {border-bottom: 1px solid #e1e1e1;
+       overflow: hidden;}
+.inputform input{    border: none;
+    background: none;
+   padding-top: 8px;
+    font-size: 30px;
+    color: #8e8e8e;    width: 68%;
+    float: left;}
+	.inputtk{    margin-bottom: 75px;}
+.quenmk{    overflow: hidden;}
+.quenmk a{    font-size: 15px;
+    float: right;
+    color: #8f8f8f;
+    width: 100%;
+    overflow: hidden;
+    text-align: right;
+    margin-top: 5px; text-decoration: none}
+.dangnhapbt{ text-align: center; margin-top: 50px;
+}
+.dangnhapbt input{     width: 100%;
+    border-radius: 60px;
+    border: none;
+    font-size: 20px;
+    padding: 18px 0;background-image: linear-gradient(to right, #0e59bf , #072c63); color: #fff}
+/****** css đăng nhập*******/
+.dangnhapbt{background-image: linear-gradient(to right, #0e59bf , #072c63);  border-radius: 62px; padding: 19px 25px; color: #fff}
+.dangkybt{     text-align: center;}
+.dangnhapbt a{ color: #fff}
+.baomat{
+    font-size: 30px;
+    text-align: center;
+    font-size: 9px;
+    background-position-x: 17%;
+}
+	
+/****** css cá nhân******/
+.canhan-title{     background: url(../assets/dangnhap/icon-canhan.jpg) no-repeat 13px;
+    padding-left: 48px;
+    font-size: 20px;
+    background-size: 24px;
+}
+.row2 li.thongtincn h3 span {
+    background: url(../assets/dangnhap/tt-canhan.jpg) no-repeat left;    padding-bottom: 17px;
+    padding-top: 13px;
+    background-size: 24px;
+}
+.row2 li.taikhoan h3 span {
+    background: url(../assets/dangnhap/taikhoan.jpg) no-repeat left;
+    background-size: 24px;
+}
+.row2 li.hopdong h3 span {
+    background: url(../assets/dangnhap/hopdong.jpg) no-repeat left; padding-bottom: 17px;
+    padding-top: 13px;
+    background-size: 24px;
+}
+.tintuc-title{background: url(../assets/dangnhap/tintuc.jpg) no-repeat 13px;
+    padding-left: 48px;
+    font-size: 20px;
+    background-size: 24px;}
+.row3 li.dautu h3 span{ background: url(../assets/dangnhap/dautu.jpg) no-repeat left;    padding-top: 5px;
+    padding-bottom: 9px; background-size: 24px;}
+.row3 li.xahoi h3 span{ background: url(../assets/dangnhap/cahoi.jpg) no-repeat left;    padding-top: 5px;
+    padding-bottom: 9px;background-size: 24px;}
+.row3 li.taichinh  h3 span{ background: url(../assets/dangnhap/taichinh.jpg) no-repeat left;    padding-top: 5px;
+    padding-bottom: 9px;background-size: 24px;}
+.row1-canhan{ background: url(../assets/dangnhap/thecanhan.png) no-repeat center 0px;background-size: 95%; overflow: hidden; margin-top: 31px; padding: 0px 30px; min-height: 310px;}
+.row1-canhan h1, .row1-canhan .mathe{ color: #072b61; text-transform: uppercase; font-size: 20px }
+.row1-canhan img{
+    width: 76%;
+padding-top: 10%;}
+.row1-canhan  .diemtv{ font-size: 15px;color: #072b61; }
+/********* css dự án********/
+.duanpage{ padding-top: 100px;overflow: hidden;
+    margin-bottom: 50px;}
+.menuduan, .duan, .duanpage .thongbao{    width: 33.3333%;
+    float: left;}
+.duan{text-align: center; font-size: 42px; color:#fff}
+.duan span{     background: url(../assets/duan/iconduan.png) no-repeat right 19px;
+    padding-right: 50px;}
+.duanpage .count-thongbao {
+    margin-top: 5px;}
+.tab{ background: #fff; border-radius: 20px;    overflow: hidden;}
+.tab ul{    overflow: hidden;}
+.tab li{ float: left; width: 33.333%; text-align: center; list-style: none}
+.tab li a {    text-decoration: none;
+    font-size: 40px;
+    color: #6e6e6e;
+    font-family: 'Vnihbold';}
+.tab li.activetab a{ color: #ffbe3d}
+.title-topdt{    border-bottom: 1px solid #e1e1e1; overflow: hidden;
+    padding: 0 50px;}
+.doanhthu-title, .tongdt, .loinhuan-title, .cp-title { width: 50%; float: left;}
+.tongdt{ text-align: right;    padding-top: 16px;}
+.doanhthu-title h3, .loinhuan-title h3, .cp-title h3{ color: #323232; font-size: 42px;}
+.doanhthu-title  span{ background: url(../assets/duan/doanhthu.jpg) no-repeat left; padding-left: 88px; }
+.tongdt span{ font-size: 55px; color: #072b61 }
+.doanhthurow img, .loinhuanrow img{padding: 0 50px 50px 50px;}
+.loinhuan-title  span{ background: url(../assets/duan/loinhuan.jpg) no-repeat left; padding-left: 88px; }
+.lichsugd{ color: #323232;font-size: 42px;    line-height: 100px; }
+.imgback{
+    width: 13px;
+}
+.footer-md::before{
+    display: none !important;
+}
+.avata{
+    width: 40px;
+}
