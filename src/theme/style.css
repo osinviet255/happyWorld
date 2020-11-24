@@ -274,33 +274,44 @@ margin-left: 18px;}
 padding-top: 10%;}
 .row1-canhan  .diemtv{ font-size: 15px;color: #072b61; }
 /********* css dự án********/
-.duanpage{ padding-top: 100px;overflow: hidden;
+.duanpage{ padding-top: 55px;overflow: hidden;
     margin-bottom: 50px;}
 .menuduan, .duan, .duanpage .thongbao{    width: 33.3333%;
     float: left;}
-.duan{text-align: center; font-size: 42px; color:#fff}
-.duan span{     background: url(../assets/duan/iconduan.png) no-repeat right 19px;
-    padding-right: 50px;}
+.duan{text-align: center; font-size: 20px; color:#fff}
+.duan span{     background: url(../assets/duan/iconduan.png) no-repeat right 8px;
+    padding-right: 18px;
+    background-size: 15px;}
 .duanpage .count-thongbao {
-    margin-top: 5px;}
-.tab{ background: #fff; border-radius: 20px;    overflow: hidden;}
+    margin-top: 5px; margin-bottom: 8px;}
+.tab{     background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-left: 8px;
+    margin-right: 8px;}
 .tab ul{    overflow: hidden;}
 .tab li{ float: left; width: 33.333%; text-align: center; list-style: none}
 .tab li a {    text-decoration: none;
-    font-size: 40px;
+    font-size: 15px;
     color: #6e6e6e;
     font-family: 'Vnihbold';}
 .tab li.activetab a{ color: #ffbe3d}
 .title-topdt{    border-bottom: 1px solid #e1e1e1; overflow: hidden;
-    padding: 0 50px;}
+    padding: 0 25px;}
 .doanhthu-title, .tongdt, .loinhuan-title, .cp-title { width: 50%; float: left;}
-.tongdt{ text-align: right;    padding-top: 16px;}
-.doanhthu-title h3, .loinhuan-title h3, .cp-title h3{ color: #323232; font-size: 42px;}
-.doanhthu-title  span{ background: url(../assets/duan/doanhthu.jpg) no-repeat left; padding-left: 88px; }
-.tongdt span{ font-size: 55px; color: #072b61 }
+.tongdt{ text-align: right;}
+.doanhthu-title h3, .loinhuan-title h3, .cp-title h3{ color: #323232; font-size: 20px;}
+.doanhthu-title  span{ background: url(../assets/duan/doanhthu.jpg) no-repeat left; padding-left: 28px; background-size: 24px;}
+.tongdt span{ font-size: 20px; color: #072b61 }
 .doanhthurow img, .loinhuanrow img{padding: 0 50px 50px 50px;}
-.loinhuan-title  span{ background: url(../assets/duan/loinhuan.jpg) no-repeat left; padding-left: 88px; }
-.lichsugd{ color: #323232;font-size: 42px;    line-height: 100px; }
+.loinhuan-title  span{ background: url(../assets/duan/loinhuan.jpg) no-repeat left; padding-left: 28px;
+    background-size: 24px; }
+.lichsugd{ color: #323232;
+    font-size: 20px;
+    line-height: 30px;
+    margin-left: 8px;
+    margin-right: 8px;
+    margin-bottom: 20px; }
 .imgback{
     width: 13px;
 }
