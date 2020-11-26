@@ -22,6 +22,10 @@ const routes: Routes = [
     path: 'nap-tien',
     loadChildren: () => import('./nap-tien/nap-tien.module').then( m => m.NapTienPageModule)
   },
+  {
+    path: 'news',
+    loadChildren: () => import('./news/news.module').then( m => m.NewsPageModule)
+  },
  
 ];
 @NgModule({
