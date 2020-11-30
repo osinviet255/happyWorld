@@ -12,6 +12,7 @@ import { Controller } from './BSL/controller';
 import { Entities } from './entities/Entities';
 
 import { HttpClientModule } from '@angular/common/http';
+import { FirebaseX } from '@ionic-native/firebase-x/ngx';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -21,6 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
     SplashScreen,
     Controller,
     Entities,
+    FirebaseX,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

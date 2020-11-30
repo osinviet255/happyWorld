@@ -47,7 +47,7 @@ export class Controller {
     }
     let jsonInput = JSON.stringify(input);
     console.log("Login input: " + jsonInput);
-    this.apiUrl = 'http://124.158.11.215:9901/happyworld/authenticate';
+    this.apiUrl = 'http://124.158.11.215:9901/happyworld/authenticate/login';
     this.output = this.httpClient.post(this.apiUrl, jsonInput, { headers: headers }).pipe(
       timeout(120000)
     );
@@ -58,17 +58,23 @@ export class Controller {
           this.displayAlert("Thông tin đăng nhập không hợp lệ. Quý khách vui lòng kiểm tra lại thông tin.")
         }
         else {
-          this.glb.setJwtTokenKey(res.data.jwtToken);
-          this.glb.setRefreshToken(res.data.refreshToken);
-          const now = new Date()
-          const item = {
-            acc: username,
-            jwtToken: res.data.jwtToken,
-            refreshToken: res.data.refreshToken,
-            expiry: moment(now).add(1, 'hour')
+          if(res.data.status !== 1){
+            this.displayAlert("Tài khoản chưa được kích hoạt. Quý khách vui lòng liên hệ với quản trị viên.")
           }
-          localStorage.setItem('account', JSON.stringify(item));
-          this.router.navigateByUrl('tabs');
+          else{
+            this.glb.setJwtTokenKey(res.data.jwtToken);
+            this.glb.setRefreshToken(res.data.refreshToken);
+            const now = new Date()
+            const item = {
+              acc: username,
+              jwtToken: res.data.jwtToken,
+              refreshToken: res.data.refreshToken,
+              expiry: moment(now).add(1, 'hour')
+            }
+            localStorage.setItem('account', JSON.stringify(item));
+            this.router.navigateByUrl('tabs');
+          }
+          
         }
       })
       .catch(err => {

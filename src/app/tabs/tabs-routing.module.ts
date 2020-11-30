@@ -24,6 +24,10 @@ const routes: Routes = [
         loadChildren: () => import('../persional/persional.module').then( m => m.PersionalPageModule)
       },
       {
+        path: 'gioithieu',
+        loadChildren: () => import('../gioithieu/gioithieu.module').then( m => m.GioithieuPageModule)
+      },
+      {
         path: '',
         redirectTo: '/tabs/home-page',
         pathMatch: 'full'

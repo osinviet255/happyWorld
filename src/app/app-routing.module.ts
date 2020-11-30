@@ -26,6 +26,18 @@ const routes: Routes = [
     path: 'news',
     loadChildren: () => import('./news/news.module').then( m => m.NewsPageModule)
   },
+  {
+    path: 'forgot-password',
+    loadChildren: () => import('./forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule)
+  },
+  {
+    path: 'history',
+    loadChildren: () => import('./history/history.module').then( m => m.HistoryPageModule)
+  },
+  {
+    path: 'register-phone',
+    loadChildren: () => import('./register-phone/register-phone.module').then( m => m.RegisterPhonePageModule)
+  },
  
 ];
 @NgModule({

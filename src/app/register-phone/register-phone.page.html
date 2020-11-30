@@ -1,0 +1,17 @@
+<ion-content padding>
+  <div class="img_container">
+    <img src="assets/img/web_logo.png">
+  </div>
+  <div id="recaptcha-container"></div>
+  
+  <div class="img_container">
+    <img src="assets/img/web_text.png">
+  </div>
+  <h2> Let's get to know you better </h2>
+  <ion-item class="input_item">
+    <ion-input type="number" placeholder="Mobile number (Ex: +91xxxxxxxxxx)" [(ngModel)]="phoneNumber" ></ion-input>
+  </ion-item>
+</ion-content>
+<ion-footer no-shadow>
+	<button ion-button color="app_color" block class="btn_login" (click)='signIn(phoneNumber)'>PROCEED</button>
+</ion-footer>

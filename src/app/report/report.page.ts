@@ -1,4 +1,5 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { Chart } from '../../../node_modules/chart.js';
 
 @Component({
@@ -11,7 +12,7 @@ export class ReportPage {
   private lineChart: Chart;
   @ViewChild('lineCanvas') lineCanvas: ElementRef;
   @ViewChild('lineCanvasLoinhuan') lineCanvasLoinhuan: ElementRef;
-  constructor() { }
+  constructor(private router: Router) { }
 
   ionViewDidEnter() {
     this.lineChart = new Chart(this.lineCanvas.nativeElement, {
@@ -71,6 +72,10 @@ export class ReportPage {
         }
       }
     });
+  }
+
+  gotoHistory(){
+    this.router.navigateByUrl('history');
   }
 
 }

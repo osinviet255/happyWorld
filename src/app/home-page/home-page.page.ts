@@ -14,4 +14,8 @@ export class HomePagePage {
     this.router.navigateByUrl('news');
   }
 
+  gioithieu(){
+    this.router.navigateByUrl('tabs/gioithieu');
+  }
+
 }
