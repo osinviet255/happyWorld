@@ -35,9 +35,26 @@ const routes: Routes = [
     loadChildren: () => import('./history/history.module').then( m => m.HistoryPageModule)
   },
   {
-    path: 'register-phone',
-    loadChildren: () => import('./register-phone/register-phone.module').then( m => m.RegisterPhonePageModule)
+    path: 'register-step2',
+    loadChildren: () => import('./register-step2/register-step2.module').then( m => m.RegisterStep2PageModule)
   },
+  {
+    path: 'register-step3',
+    loadChildren: () => import('./register-step3/register-step3.module').then( m => m.RegisterStep3PageModule)
+  },
+  {
+    path: 'register-final',
+    loadChildren: () => import('./register-final/register-final.module').then( m => m.RegisterFinalPageModule)
+  },
+  {
+    path: 'forgot-pass-result',
+    loadChildren: () => import('./forgot-pass-result/forgot-pass-result.module').then( m => m.ForgotPassResultPageModule)
+  },
+  {
+    path: 'news-category',
+    loadChildren: () => import('./news-category/news-category.module').then( m => m.NewsCategoryPageModule)
+  }
+  
  
 ];
 @NgModule({

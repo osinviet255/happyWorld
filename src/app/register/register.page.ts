@@ -17,6 +17,6 @@ export class RegisterPage {
   }
 
   HandleRegister(){
-    this.router.navigateByUrl('register-phone');
+    this.router.navigateByUrl('register-step2');
   }
 }

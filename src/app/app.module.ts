@@ -13,6 +13,7 @@ import { Entities } from './entities/Entities';
 
 import { HttpClientModule } from '@angular/common/http';
 import { FirebaseX } from '@ionic-native/firebase-x/ngx';
+import { FirebaseAuthentication } from '@ionic-native/firebase-authentication/ngx';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -23,6 +24,7 @@ import { FirebaseX } from '@ionic-native/firebase-x/ngx';
     Controller,
     Entities,
     FirebaseX,
+    FirebaseAuthentication,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

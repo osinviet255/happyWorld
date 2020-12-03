@@ -26,7 +26,7 @@ const routes: Routes = [
       {
         path: 'gioithieu',
         loadChildren: () => import('../gioithieu/gioithieu.module').then( m => m.GioithieuPageModule)
-      },
+      },      
       {
         path: '',
         redirectTo: '/tabs/home-page',

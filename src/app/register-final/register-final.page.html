@@ -1,0 +1,24 @@
+<ion-content>
+  <div id="dangnhap01">
+    <div class="headerdangnhap01">
+      <form class="formLogin">
+        <p class="inputform inputtk"><label>Tài khoản</label>
+          <ion-input type="text" placeholder="Username" class="ioninput" id="sUsername"></ion-input>
+        </p>
+        <p class="inputform inputtk"><label>Mật khẩu</label>
+          <ion-input type="password" placeholder="Password" class="ioninput" id="sPassword"></ion-input>
+        </p>
+        <p class="inputform inputtk"><label>Họ Tên</label>
+          <ion-input type="text" placeholder="FullName" class="ioninput" id="sFullName"></ion-input>
+        </p>
+        <p class="inputform inputtk"><label>Email</label>
+          <ion-input type="text" placeholder="Email" class="ioninput" id="sEmail"></ion-input>
+        </p>
+        <p class="inputform inputtk"><label>Số điện thoại</label>
+          <ion-input type="text" placeholder="Mobile" disabled="true" class="ioninput" id="sMobileNo" value="{{mobileNo}}"></ion-input>
+        </p>
+        <p class="dangnhapbt"> <input type="button" value="Đăng ký" (click)="Register()"></p>
+      </form>
+    </div>
+  </div>
+</ion-content>

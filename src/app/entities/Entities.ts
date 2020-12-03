@@ -5,6 +5,10 @@ import { Injectable } from '@angular/core';
 export class Entities {
     jwtTokenKey: any;
     refreshToken: any;
+    verificationId: any;
+    confirmationResult: any;
+    mobileRegister: any;
+    username: any;
 
     constructor(){
 
@@ -24,5 +28,36 @@ export class Entities {
 
     setRefreshToken(value){
         this.refreshToken = value;
+    }
+
+    getverificationId(){
+        return this.verificationId;
+    }
+
+    setverificationId(value){
+        this.verificationId = value;
+    }
+
+    getconfirmationResult(){
+        return this.confirmationResult;
+    }
+    setconfirmationResult(value){
+        this.confirmationResult = value;
+    }
+
+    getMobileRegister(){
+        return this.mobileRegister;
+    }
+
+    setMobileRegister(value){
+        this.mobileRegister = value;
+    }
+
+    getUsername(){
+        return this.username;
+    }
+
+    setUsername(value){
+        this.username = value;
     }
 }

@@ -18,4 +18,8 @@ export class HomePagePage {
     this.router.navigateByUrl('tabs/gioithieu');
   }
 
+  gotoNewsCategory(){
+    this.router.navigateByUrl('news-category');
+  }
+
 }
