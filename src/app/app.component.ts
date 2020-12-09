@@ -44,26 +44,26 @@ export class AppComponent {
       const item = JSON.parse(sItem);
       const now = new Date();
       const momentNow = moment(now);
-      if (item === null) {
-        localStorage.removeItem('account');
-        this.router.navigate(['welcome-page']);
-      }
-      else {
-        const expir = moment(item.expiry);
-        console.log("Moment Now: " + momentNow + ", Expire: " + expir);
-        if (momentNow > expir) {
-          localStorage.removeItem('account');
-          this.router.navigate(['welcome-page']);
-        }
-        else {
-          this.glb.setJwtTokenKey(item.jwtToken);
-          this.glb.setRefreshToken(item.refreshToken);
-          this.glb.setUsername(item.acc);
-          this.router.navigate(['tabs']);
-        }
-      }
+      // if (item === null) {
+      //   localStorage.removeItem('account');
+      //   this.router.navigate(['welcome-page']);
+      // }
+      // else {
+      //   const expir = moment(item.expiry);
+      //   console.log("Moment Now: " + momentNow + ", Expire: " + expir);
+      //   if (momentNow > expir) {
+      //     localStorage.removeItem('account');
+      //     this.router.navigate(['welcome-page']);
+      //   }
+      //   else {
+      //     this.glb.setJwtTokenKey(item.jwtToken);
+      //     this.glb.setRefreshToken(item.refreshToken);
+      //     this.glb.setUsername(item.acc);
+      //     this.router.navigate(['tabs']);
+      //   }
+      // }
 
-      // this.router.navigate(['register-final']);
+      this.router.navigate(['welcome-page']);
     });
   }
 }

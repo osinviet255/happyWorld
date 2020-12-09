@@ -14,6 +14,7 @@ import { Entities } from './entities/Entities';
 import { HttpClientModule } from '@angular/common/http';
 import { FirebaseX } from '@ionic-native/firebase-x/ngx';
 import { FirebaseAuthentication } from '@ionic-native/firebase-authentication/ngx';
+import { CurrencyPipe } from '@angular/common';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -25,6 +26,7 @@ import { FirebaseAuthentication } from '@ionic-native/firebase-authentication/ng
     Entities,
     FirebaseX,
     FirebaseAuthentication,
+    CurrencyPipe,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

@@ -18,7 +18,8 @@
         <div class="wrapper">
               <p>Tôi muốn nhập số khác</p>
               <form>
-                <ion-input class="inptMoney" appIntegerInput inputmode="numeric" type="number" placeholder="Bắt đầu từ 50.000 đ"></ion-input>
+                <ion-input class="inptMoney" appIntegerInput inputmode="number" maxlength="15" type="text" (keyup)="updateList($event)" [value]="moneyValue" placeholder="Bắt đầu từ 50.000 đ"></ion-input>
+                <div class="dvNext" (click)="naptien(moneyValue)"></div>
               </form>
           </div>
       </div>
