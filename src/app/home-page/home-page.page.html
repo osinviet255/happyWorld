@@ -20,16 +20,12 @@
       <div class="taisandautu">
         <h3><span>Tài sản đã đầu tư</span></h3>
       </div>
-      <div class="cophieush">
+      <div class="cophieush" (click)="goToUserStock()">
         <h3><span>Cổ phiếu sở hữu</span></h3>
         <table width="100%">
-          <tr>
-            <td>CVM</td>
-            <td class="numbercp">23</td>
-          </tr>
-          <tr>
-            <td>CTG</td>
-            <td class="numbercp">54</td>
+          <tr *ngFor="let room of lstUserStock">
+            <td>{{room.stockCode}}</td>
+            <td class="numbercp">{{room.stockNumber | number}}</td>
           </tr>
           <tr>
             <td>...</td>

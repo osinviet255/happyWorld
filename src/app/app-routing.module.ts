@@ -53,6 +53,18 @@ const routes: Routes = [
   {
     path: 'news-category',
     loadChildren: () => import('./news-category/news-category.module').then( m => m.NewsCategoryPageModule)
+  },
+  {
+    path: 'add-room',
+    loadChildren: () => import('./add-room/add-room.module').then( m => m.AddRoomPageModule)
+  },
+  {
+    path: 'chat-detail/:roomKey/:nickname',
+    loadChildren: () => import('./chat-detail/chat-detail.module').then( m => m.ChatDetailPageModule)
+  },
+  {
+    path: 'user-stock',
+    loadChildren: () => import('./stocks/user-stock/user-stock.module').then( m => m.UserStockPageModule)
   }
   
  

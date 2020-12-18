@@ -1,0 +1,62 @@
+#container-groupchat{width: 100%; padding:0; margin: 0 auto; background: #fff; height: 100%;} 
+.groupchat{ background: #132c6c; width: 100%; clear: both;
+    padding: 25px 0;}
+.groupchat .livechat{ font-size: 20px; color: #f8f8f8;    width: 50%;font-family: 'Vnihbold';    line-height: 0px;
+    float: left;}
+.closegroup{     width: 50%;
+    float: left;
+    text-align: right;
+margin-top: -12px;}
+.closegroup img{
+    width: 24px;
+}
+.list-groupchat, .linechat{     width: 100%;
+    overflow: hidden;
+    clear: both;}
+.linegroup{width: 100%; clear: both; border-bottom: 1px solid #acacac;margin-bottom: 2%; padding-bottom: 2%; margin-top: 2%} 
+.avata-canhan{ width: 20%;
+    float: left;
+margin-top: 13px;}
+	.thongtinnhom{width: 54%;
+    float: left;
+    margin-lefT: 5%;
+margin-top: 13px;}
+.time-tinnhan{ width: 20%; float: left; text-align: right;padding-top: 20px;}
+.thongtinnhom .tennhom{    font-size: 20px;
+    color: #000;font-family: 'Vnihbold'; }
+.thongtinnhom .tinnhan-new {    font-size: 15px; color: #000;    margin: 5px 0;}
+.timechat {font-size: 13px;
+    color: #808080;}
+.sltinnhan{ margin-top: 75px}
+.sltinnhan span{ background: #76c41b;
+    border-radius: 47px;
+    padding: 15px;
+    color: #fff;
+    font-size: 30px;}
+.btn-danger img{
+    width: 24px;
+}
+.header-search input {
+    width: 89%;
+    padding-left: 2%;
+    background: #ebebeb;
+    border: none;
+    float: left;
+    height: 28px;
+    font-size: 15px;
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.btn-danger{
+    margin-top: 10px;
+}
+.wrapper{
+    width: 90% !important;
+}
+.danhsachnhom img{
+    width: 100px;
+}
+ion-content{
+    background: #fff;
+}

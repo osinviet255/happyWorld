@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+  </ion-buttons>
+    <ion-title>LIVE CHAT</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content style="position:absolute; top: 5%">
+  <ion-list lines="none">
+    <ion-item>
+      <ion-input type="text" [(ngModel)]="data.roomname" name="roomname" placeholder="Tên nhóm" required="" style="border-bottom: solid 1px #ccc;"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-button expand="block" class="buttonLogin" (click)='addRoom()'>Tạo nhóm</ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>

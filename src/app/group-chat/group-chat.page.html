@@ -1,9 +1,40 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>GroupChat</ion-title>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content>
 
-</ion-content>
+  <div id="container-groupchat">
+    <ion-content style="height: 7%;">
+      <div class="wrapper">
+        <div class="header-search">
+               <form>
+                   <input type="text" value="" placeholder="Tìm kiếm"/>
+                   <button class="btn btn-danger" type="submit"><img src="../../assets/cacchude/search-icon.png" alt="Search" /></button>
+               </form>
+       </div>
+     </div>
+    </ion-content>
+    <ion-content>
+      <div class="groupchat"> 
+        <div class="wrapper">
+              <div class="livechat" style="margin-top: -11px;"><span>LIVE CHAT</span> <ion-icon name="add-circle-outline" style="margin-left: 5px; margin-bottom: -3px;" (click)="addRoom()"></ion-icon></div>
+              <div class="closegroup"><img src="../../assets/groupchat/icon-close.jpg" alt="Close" /></div>
+          </div>
+      </div>
+      <div class="list-groupchat">
+        <div class="linegroup" *ngFor="let room of rooms">
+             <div class="wrapper" (click)="joinRoom(room.key, room.roomname)">	
+               <a>
+               <div class="avata-canhan"><img src="../../assets/groupchat/avata.png" alt="avata" /></div>
+                 <div class="thongtinnhom"> 
+                   <div class="tennhom">{{room.roomname}}</div>
+                     <div class="tinnhan-new">{{room.user}} {{room.lastMsg}}</div>
+                     <div class="danhsachnhom"><img src="../../assets/groupchat/group.jpg" alt="Nhóm" /></div>
+                 </div>
+                 <div class="time-tinnhan">
+                   <div class="timechat">{{room.lastTime}}</div>
+                 </div>
+                 </a>
+             </div>
+         </div>
+      </div><!--list-groupchat-->
+    </ion-content>
+     
+</div>

@@ -1,0 +1,34 @@
+  <ion-content>
+    <ion-content style="height: 15%;">
+      <div class="wrapper">
+        <div class="header-search">
+          <form>
+            <ion-searchbar #inputSearch placeholder="Tìm kiếm"></ion-searchbar>
+          </form>
+        </div>
+        <div class="header-title" (click)="goBack()"><a>
+            <div class="prevtitle"><img src="../../assets/naptien/icon-prev.jpg" alt="Prev" /></div>
+            <h1>Danh sách cổ phiếu sở hữu</h1>
+          </a>
+        </div>
+      </div>
+    </ion-content>
+    <ion-content style="height: 85%;">  
+      <div class="lichsugiaodich">
+        <div class="rowlichsu1">
+          <div class="wrapper">
+            <div class="collichsu">Ngày</div>
+            <div class="collichsu">Cổ phiếu</div>
+            <div class="collichsu">Số lượng sở hữu</div>
+          </div>
+        </div>
+        <div class="rowlichsu" *ngFor="let stocks of userStock">
+          <div class="rowWrapper">
+            <div class="ngayls collichsu">{{stocks.createdDate | date : 'HH:mm dd/MM/yyyy'}}</div>
+            <div class="cophieunls collichsu">{{stocks.stockCode}}</div>
+            <div class="solieuls collichsu">{{stocks.stockNumber | number}}</div>
+          </div>      
+        </div>    
+      </div>
+    </ion-content>
+  </ion-content>

@@ -1,34 +1,33 @@
 {
   "project_info": {
-    "project_number": "602138027386",
-    "firebase_url": "https://happyworld-35dcc.firebaseio.com",
-    "project_id": "happyworld-35dcc",
-    "storage_bucket": "happyworld-35dcc.appspot.com"
+    "project_number": "1055941850262",
+    "project_id": "happyworld-98e22",
+    "storage_bucket": "happyworld-98e22.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:602138027386:android:ad81a2443e64f8acf4e2c3",
+        "mobilesdk_app_id": "1:1055941850262:android:5a9cdbd701ec600d25feb7",
         "android_client_info": {
           "package_name": "io.ionic.happyworld"
         }
       },
       "oauth_client": [
         {
-          "client_id": "602138027386-7rdoajffonsqg5akb8gn77mvhr11m692.apps.googleusercontent.com",
+          "client_id": "1055941850262-m5g6k6mu3gdr66os38i3a57n7k5gqoa1.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBDuO7_llg_RLSbKYpCzTin1vNOAzAT9Bs"
+          "current_key": "AIzaSyDmiK5dqU0g4B8Gdp3992U3EBIHzf_x9Do"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "602138027386-7rdoajffonsqg5akb8gn77mvhr11m692.apps.googleusercontent.com",
+              "client_id": "1055941850262-m5g6k6mu3gdr66os38i3a57n7k5gqoa1.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

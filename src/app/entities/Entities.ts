@@ -9,6 +9,8 @@ export class Entities {
     confirmationResult: any;
     mobileRegister: any;
     username: any;
+    roomName: any;
+    lstUserStock: [];
 
     constructor(){
 
@@ -59,5 +61,21 @@ export class Entities {
 
     setUsername(value){
         this.username = value;
+    }
+
+    getRoomName(){
+        return this.roomName;
+    }
+
+    setRoomName(value){
+        this.roomName = value;
+    }
+
+    getLstUserStock(){
+        return this.lstUserStock;
+    }
+
+    setLstUserStock(value){
+        this.lstUserStock = value;
     }
 }

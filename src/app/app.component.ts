@@ -25,13 +25,14 @@ export class AppComponent {
   }
 
   firebaseConfig = {
-    apiKey: "AIzaSyACzJhTF1kKAu5u7SGOY3m6mC-Qy5dREks",
-    authDomain: "happyworld-35dcc.firebaseapp.com",
-    databaseURL: "https://happyworld-35dcc.firebaseio.com",
-    projectId: "happyworld-35dcc",
-    storageBucket: "happyworld-35dcc.appspot.com",
-    messagingSenderId: "602138027386",
-    appId: "1:602138027386:web:81c94d5f82d11e42f4e2c3"
+    apiKey: "AIzaSyBv7fi8RZi2nN0bKBsp-6P_p8jyfZux6N8",
+    authDomain: "happyworld-98e22.firebaseapp.com",
+    databaseURL: "https://happyworld-98e22-default-rtdb.firebaseio.com",
+    projectId: "happyworld-98e22",
+    storageBucket: "happyworld-98e22.appspot.com",
+    messagingSenderId: "1055941850262",
+    appId: "1:1055941850262:web:62a02105edae463425feb7",
+    measurementId: "G-L2KF88VVNV"
   };
 
   initializeApp() {
@@ -44,26 +45,26 @@ export class AppComponent {
       const item = JSON.parse(sItem);
       const now = new Date();
       const momentNow = moment(now);
-      // if (item === null) {
-      //   localStorage.removeItem('account');
-      //   this.router.navigate(['welcome-page']);
-      // }
-      // else {
-      //   const expir = moment(item.expiry);
-      //   console.log("Moment Now: " + momentNow + ", Expire: " + expir);
-      //   if (momentNow > expir) {
-      //     localStorage.removeItem('account');
-      //     this.router.navigate(['welcome-page']);
-      //   }
-      //   else {
-      //     this.glb.setJwtTokenKey(item.jwtToken);
-      //     this.glb.setRefreshToken(item.refreshToken);
-      //     this.glb.setUsername(item.acc);
-      //     this.router.navigate(['tabs']);
-      //   }
-      // }
+      if (item === null) {
+        localStorage.removeItem('account');
+        this.router.navigate(['welcome-page']);
+      }
+      else {
+        const expir = moment(item.expiry);
+        console.log("Moment Now: " + momentNow + ", Expire: " + expir);
+        if (momentNow > expir) {
+          localStorage.removeItem('account');
+          this.router.navigate(['welcome-page']);
+        }
+        else {
+          this.glb.setJwtTokenKey(item.jwtToken);
+          this.glb.setRefreshToken(item.refreshToken);
+          this.glb.setUsername(item.acc);
+          this.router.navigate(['tabs']);
+        }
+      }
 
-      this.router.navigate(['welcome-page']);
+      // this.router.navigate(['welcome-page']);
     });
   }
 }

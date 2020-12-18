@@ -1,0 +1,51 @@
+<ion-content>
+
+  <div id="wrapper">
+    <div class="message-content">
+
+      <div class="groupchat"> 
+        <div class="wrapper">
+              <a><div class="tennhom" (click)="goBack()"><span>{{roomName}}</span></div></a>
+          </div>
+      </div>
+      <div class="allMsgBox">
+        <div class="message-box" *ngFor="let chat of chats">
+          <div class="message-box__item incoming" *ngIf="chat.user !== nickname">
+            <div class="name">{{chat.username}}</div>
+
+            <div class="box-text">
+              {{chat.message}}
+
+              <div class="time">{{chat.sendDate | date:'HH:mm'}}</div>
+            </div>
+          </div>
+
+          <div class="message-box__item outgoing" *ngIf="chat.user === nickname">
+            <div class="name">{{chat.username}}</div>
+
+            <div class="box-text">
+              {{chat.message}}
+
+              <div class="time">{{chat.sendDate | date:'HH:mm'}}</div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+</ion-content>
+<ion-footer>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-10>
+        <ion-input type="text" placeholder="Type a message" [(ngModel)]="data.message" name="message"
+          style="width: 87%; float: left;"></ion-input>
+        <ion-icon name="paper-plane" (click)="sendMessage()" style="float: right;"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

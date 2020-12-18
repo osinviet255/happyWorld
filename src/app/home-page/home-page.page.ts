@@ -1,3 +1,5 @@
+import { Entities } from './../entities/Entities';
+import { Controller } from './../BSL/controller';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -8,7 +10,14 @@ import { Router } from '@angular/router';
 })
 export class HomePagePage {
 
-  constructor(private router: Router) { }
+  lstUserStock: [];
+  constructor(private router: Router, private ctl: Controller, private glb: Entities) { }
+
+  ionViewWillEnter(){
+    this.ctl.searchListUserStock(this.glb.getUsername(), 5).then(() => {
+      this.lstUserStock = this.glb.getLstUserStock();
+    });    
+  }
 
   gotoDetail(){
     this.router.navigateByUrl('news');
@@ -20,6 +29,10 @@ export class HomePagePage {
 
   gotoNewsCategory(){
     this.router.navigateByUrl('news-category');
+  }
+
+  goToUserStock(){
+    this.router.navigateByUrl('user-stock');
   }
 
 }

@@ -289,4 +289,35 @@ export class Controller {
         
       });
   }
+
+  async searchListUserStock(username, pageSize){
+    const headers = { 'content-type': 'application/json', 'Authorization': 'Bearer ' + this.glb.getJwtTokenKey() };
+    let input = {
+      username: username,
+      pageIndex: 0,
+      pageSize: pageSize
+    }
+    let jsonInput = JSON.stringify(input);
+    console.log("searchListUserStock input: " + jsonInput);
+    this.apiUrl = 'http://124.158.11.215:9901/happyworld/userstock/search';
+    this.output = this.httpClient.post(this.apiUrl, jsonInput, { headers: headers }).pipe(
+      timeout(120000)
+    );
+    await this.output.toPromise()
+      .then(res => {
+        console.log("searchListUserStock output: " + res.data);
+        this.glb.setLstUserStock(res.data.content);
+      })
+      .catch(err => {        
+        if(err.status === 403){
+          this.displayAlert("Phiên đăng nhập hết hiệu lực, Quý khách vui lòng đăng nhập lại.");
+          localStorage.removeItem("account");
+          this.router.navigateByUrl('login');
+        }
+        else{
+          console.log("searchListUserStock...failed. Error: " + err.message);
+          this.displayAlert("Có lỗi xảy ra, vui lòng thử lại sau.");
+        }
+      })
+  }
 }
