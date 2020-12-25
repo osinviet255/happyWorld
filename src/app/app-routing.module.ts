@@ -65,6 +65,18 @@ const routes: Routes = [
   {
     path: 'user-stock',
     loadChildren: () => import('./stocks/user-stock/user-stock.module').then( m => m.UserStockPageModule)
+  },
+  {
+    path: 'list-project/:projTypeId',
+    loadChildren: () => import('./projects/list-project/list-project.module').then( m => m.ListProjectPageModule)
+  },
+  {
+    path: 'project-detail',
+    loadChildren: () => import('./projects/project-detail/project-detail.module').then( m => m.ProjectDetailPageModule)
+  },
+  {
+    path: 'buy-stock',
+    loadChildren: () => import('./stocks/buy-stock/buy-stock.module').then( m => m.BuyStockPageModule)
   }
   
  

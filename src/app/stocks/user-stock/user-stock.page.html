@@ -23,7 +23,7 @@
           </div>
         </div>
         <div class="rowlichsu" *ngFor="let stocks of userStock">
-          <div class="rowWrapper">
+          <div class="rowWrapper" (click)="gotoProjDetail(stocks.stockCode)">
             <div class="ngayls collichsu">{{stocks.createdDate | date : 'HH:mm dd/MM/yyyy'}}</div>
             <div class="cophieunls collichsu">{{stocks.stockCode}}</div>
             <div class="solieuls collichsu">{{stocks.stockNumber | number}}</div>

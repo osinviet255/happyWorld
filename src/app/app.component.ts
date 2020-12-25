@@ -40,6 +40,7 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
       //Initial Firebase
+      
       firebase.initializeApp(this.firebaseConfig);
       const sItem = localStorage.getItem('account');
       const item = JSON.parse(sItem);
@@ -60,6 +61,8 @@ export class AppComponent {
           this.glb.setJwtTokenKey(item.jwtToken);
           this.glb.setRefreshToken(item.refreshToken);
           this.glb.setUsername(item.acc);
+          this.glb.setFullName(item.fullName);
+          this.glb.setMobileNo(item.mobileNo);
           this.router.navigate(['tabs']);
         }
       }

@@ -1,0 +1,28 @@
+<ion-content>
+  <div id="container-chude">
+    <div class="wrapper">
+      <div class="prevdn" (click)="goback()"><a><img class="imgback" src="../../assets/naptien/icon-prev.jpg" alt="prev" /></a></div>
+      <div class="header-search">
+        <form>
+          <ion-input type="text" placeholder="Tìm kiếm"></ion-input>
+          <button class="btn btn-danger" type="submit"><img src="../../assets/cacchude/search-icon.png" alt="Search" /></button>
+        </form>
+      </div>
+      
+      <div class="noidungchude">
+        <div class="rowchude" *ngFor="let data of lstData">
+          <div class="imgtin" (click)="goToDetail(data.id)"><img src="../../assets/cacchude/img-tintuc.jpg" alt="Các chủ đề" /></div>
+          <div class="noidungtin" (click)="goToDetail(data.id)">
+            <h3><a>{{data.name}}</a></h3>
+            <div class="datetime"><span>{{data.createdDate | date : 'dd/MM/yyyy'}}</span></div>
+            <div class="description-tin">{{data.shortDescription}}
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      
+    </div>
+
+  </div>
+</ion-content>

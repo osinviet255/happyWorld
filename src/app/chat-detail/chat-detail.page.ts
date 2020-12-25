@@ -64,6 +64,7 @@ export class ChatDetailPage {
       username: this.glb.getUsername(),
       sendDate: Date()
     });
+    this.ctl.CreateChatHistory(this.glb.getUsername(), this.roomName, this.data.message);
     this.data.message = '';
     this.content.scrollToBottom(0);
   }

@@ -1,0 +1,28 @@
+
+<ion-content>
+  
+  <div id="container-dscophieu">
+    <div (click)="dismissModal()" style="padding-left: 17px;
+  padding-top: 14px;
+  font-size: 15px;
+  color: #fff;
+  margin-bottom: -14px;">Close</div>
+    <div class="wrapper">
+     	<div class="logo-gioithieu"><a><img src="../../../assets/logo.png" alt="Logo" /></a></div> 
+         <div class="dscophieu-buy">
+      		<h1>THÔNG TIN CỔ PHIẾU</h1>
+            <form action="" method="post">
+              <ion-input type="text" name="ten_cpbuy" id="ten_cpbuy" value="" (ionInput)='handleInput($event);' placeholder="Mã cổ phiếu"></ion-input>
+              <ion-list style="display:none;">
+                <ion-item *ngFor="let item of lstStock" (click)='handleClick($event, item.code)'>{{ item.code }} - {{item.owner}}</ion-item>
+              </ion-list>
+                <ion-input name="sl_cpbuy"  id="sl_cpbuy" appIntegerInput inputmode="number" maxlength="15" type="text" (keyup)="updateList($event)" [value]="moneyValue" placeholder="Số lượng"></ion-input>
+                <input type="button" id="btm_thanhtoan" value="THANH TOÁN" (click)="handleThanhtoan(moneyValue)" />
+            </form>
+      	 </div>
+         	
+    </div>
+  
+    
+</div>
+</ion-content>

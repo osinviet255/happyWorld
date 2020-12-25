@@ -11,11 +11,16 @@ import { Router } from '@angular/router';
 export class HomePagePage {
 
   lstUserStock: [];
-  constructor(private router: Router, private ctl: Controller, private glb: Entities) { }
+  fullname: any;
+  constructor(private router: Router, private ctl: Controller, private glb: Entities) {
+    this.lstUserStock = this.glb.getLstData();
+   }
 
   ionViewWillEnter(){
+    this.lstUserStock = this.glb.getLstData();
+    this.fullname = this.glb.getFullName();
     this.ctl.searchListUserStock(this.glb.getUsername(), 5).then(() => {
-      this.lstUserStock = this.glb.getLstUserStock();
+      this.lstUserStock = this.glb.getLstData();
     });    
   }
 
@@ -33,6 +38,11 @@ export class HomePagePage {
 
   goToUserStock(){
     this.router.navigateByUrl('user-stock');
+  }
+
+  goToListProjByType(typeId){
+    console.log(typeId);
+    this.router.navigate(['list-project', typeId]);
   }
 
 }

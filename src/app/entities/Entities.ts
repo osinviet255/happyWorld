@@ -10,7 +10,10 @@ export class Entities {
     mobileRegister: any;
     username: any;
     roomName: any;
-    lstUserStock: [];
+    lstData: [];
+    dataObject: any;
+    fullname: any;
+    mobilNo: any;
 
     constructor(){
 
@@ -71,11 +74,35 @@ export class Entities {
         this.roomName = value;
     }
 
-    getLstUserStock(){
-        return this.lstUserStock;
+    getLstData(){
+        return this.lstData;
     }
 
-    setLstUserStock(value){
-        this.lstUserStock = value;
+    setLstData(value){
+        this.lstData = value;
+    }
+
+    getFullName(){
+        return this.fullname;
+    }
+
+    setFullName(value){
+        this.fullname = value;
+    }
+
+    getMobileNo(){
+        return this.mobilNo;
+    }
+
+    setMobileNo(value){
+        this.mobilNo = value;
+    }
+
+    getDataObject(){
+        return this.dataObject;
+    }
+
+    setDataObject(value){
+        this.dataObject = value;
     }
 }

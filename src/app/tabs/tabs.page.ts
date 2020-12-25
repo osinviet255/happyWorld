@@ -1,5 +1,7 @@
+import { Controller } from './../BSL/controller';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { ActionSheetController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tabs',
@@ -13,7 +15,7 @@ export class TabsPage {
   iconReport: any;
   iconGroupChat: any;
   iconPersonal: any;
-  constructor(private router: Router) {}
+  constructor(private router: Router, private actionShet: ActionSheetController, private ctl: Controller ) {}
 
   change(event){
     console.log(event);
@@ -49,6 +51,41 @@ export class TabsPage {
   }
   naptien(){
     this.router.navigateByUrl('nap-tien');
+  }
+
+  async showActionSheet(){
+    let actionSheet = this.actionShet.create({
+      header: "Hành động",
+      buttons: [
+        {
+          text: 'Nạp tiền',
+          handler: () => {
+            this.naptien();
+          }
+        },
+        {
+          text: 'Mua cổ phiếu',
+          handler: () => {
+            this.ctl.showModalBuyStock();
+          }
+        },
+        {
+          text: 'Bán cổ phiếu',
+          handler: () => {
+            console.log('Bán cổ phiếu clicked');
+          }
+        },
+        {
+          text: 'Huỷ',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+ 
+    (await actionSheet).present();
   }
 
 }

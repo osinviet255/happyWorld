@@ -7,7 +7,7 @@
         <div class="avata"><img src="../../assets/trangchu/avata.png" alt="Avata" /></div>
         <div class="informenber">
           <p> Tên người dùng</p>
-          <p class="staricon"><span>THÀNH VIÊN MỚI </span><img src="../../assets/trangchu/icon-sao.png"
+          <p class="staricon"><span>{{fullname}} </span><img src="../../assets/trangchu/icon-sao.png"
               style="width: 24px; margin-bottom: -5px;" /></p>
         </div>
       </div>
@@ -75,32 +75,32 @@
     <h2 class="duantk-title">Dự án đang triển khai</h2>
     <div class="row3">
       <ul>
-        <div class="divSlt">
+        <div class="divSlt" (click)="goToListProjByType(1)">
           <li class="dvgiaitri">
             <h3><span>Dịch vụ giải trí</span></h3>
           </li>
         </div>        
-        <div class="divSlt">
+        <div class="divSlt" (click)="goToListProjByType(2)">
           <li class="nhahang">
             <h3><span>Nhà hàng</span></h3>
           </li>
         </div>        
-        <div class="divSlt">
+        <div class="divSlt" (click)="goToListProjByType(3)">
           <li class="mocat">
             <h3><span>Mỏ cát</span></h3>
           </li>
         </div>        
-        <div class="divSlt">
+        <div class="divSlt" (click)="goToListProjByType(4)">
           <li class="moda">
             <h3><span>Mỏ đá</span></h3>
           </li>
         </div>        
-        <div class="divSlt">
+        <div class="divSlt" (click)="goToListProjByType(5)">
           <li class="vantai">
             <h3><span>Vận tải</span></h3>
           </li>
         </div>        
-        <div class="divSlt">
+        <div class="divSlt" (click)="goToListProjByType(6)">
           <li class="batds lastli">
             <h3><span>Bất động sản</span></h3>
           </li>
