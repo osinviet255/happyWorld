@@ -18,5 +18,7 @@ export class RegisterPage {
 
   HandleRegister(){
     this.router.navigateByUrl('register-step2');
+    //Test
+    // this.router.navigateByUrl('register-final');
   }
 }

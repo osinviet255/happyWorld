@@ -73,6 +73,7 @@ export class TabsPage {
           text: 'Bán cổ phiếu',
           handler: () => {
             console.log('Bán cổ phiếu clicked');
+            this.ctl.showModalSellStock();
           }
         },
         {

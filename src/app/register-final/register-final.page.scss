@@ -29,5 +29,72 @@
 }
 
 .ioninput{
-    width: 70% !important;
+    width: 95% !important;
 }
+
+#container-dangkytk {
+    background: #ffffff url(../../assets/dangnhap/bg-dangnhap.png) no-repeat top;padding-bottom: 50%;    background-size: 100%;
+}
+#container-dangkytk .logo-gioithieu{    margin-bottom: 40%;
+    text-align: CENTER; }
+#container-dangkytk .dangkytaikhoan h1, .dangnhaptk h1{ font-size:25px ; color: #072b62; text-align: center;    margin-bottom: 40px;}
+#container-dangkytk .dangkytaikhoan input, .dangnhaptk input{    width: 84%;
+    clear: both;
+    padding: 8px 45px;
+    border: 1px solid #2f8dff;
+    border-radius: 62px;
+    height: 40px;
+    margin-bottom: 26px;
+    font-size: 23px;
+    line-height: 40px;}
+#container-dangkytk .dangkytaikhoan input#tel_dk{ background: url(../../assets/icon/call.png) no-repeat left 21px;    background-position-x: 67px;
+   background-size: 20%;
+    padding-left: 31%;
+    width: 61%;}
+#container-dangkytk .dangkytaikhoan input#pass_dk{background: url(../../assets/icon/iconmatkhau.png) no-repeat right 33px;
+    background-position-x: 95%;
+    background-size: 8%;
+    padding-right: 16%;
+    width: 76%;}
+#container-dangkytk .dangkytaikhoan input[type="button"], .dangnhaptk input[type="button"]{    background-image: linear-gradient(to right, #0e5ac0 , #072b62) !important;font-family: "Vnihbold";
+    font-size: 30px;
+    height: 60px;
+    width: 95%;
+    color: #fff;}
+
+#container-dangkytk .dangkytaikhoan input[type="text"]{ width: 50%; float: left; color: #0e58be;
+    font-weight: 600;}
+#container-dangkytk .dangkytaikhoan span.capcha{    background-image: linear-gradient(to right, #0ac5ff , #4966ff) !important;
+    padding: 20px 40px;
+    margin-top: 50px;
+    margin-lefT: 31px;
+    font-size: 50px;
+    line-height: 100px;    color: #fff;}
+
+.ng-untouched{
+    text-align: center;
+}
+
+.dangnhaptk input{    width: 95%;  
+    padding-lefT: 50px;}
+.dangnhaptk input#user_dn{    background: url(../../assets/icon/icon-dangnhap.png) no-repeat left 7px; background-position-x: 24px;
+    background-size: 24px;}
+.dangnhaptk input#email_dn{    background: url(../../assets/icon/icon-email.png) no-repeat left 12px; background-position-x: 24px;
+    background-size: 24px;}
+.dangnhaptk input#fullname_dn{    background: url(../../assets/icon/icon-dangnhap.png) no-repeat left 5px; background-position-x: 24px;
+    background-size: 24px;}
+.dangnhaptk input#pass_dn{    background: url(../../assets/icon/icon-mk.png) no-repeat left 5px; background-position-x: 24px;
+    background-size: 24px;}
+    .dangnhaptk input#sdt_dn{    background: url(../../assets/icon/call.png) no-repeat left 5px; background-position-x: 24px;
+        background-size: 24px;}
+ion-input{
+    width: 84%;
+    clear: both;
+    padding: 8px 69px;
+    border: 1px solid #2f8dff;
+    border-radius: 62px;
+    height: 40px;
+    margin-bottom: 26px;
+    font-size: 23px;
+    line-height: 40px;
+    }

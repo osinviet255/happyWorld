@@ -14,11 +14,11 @@
             <form action="" method="post">
               <ion-input type="text" name="ten_cpbuy" id="ten_cpbuy" value="" (ionInput)='handleInput($event);' placeholder="Mã cổ phiếu"></ion-input>
               <ion-list id="listStock" style="display:none;">
-                <ion-item *ngFor="let item of lstStock" (click)='handleClick($event, item.code)'>{{ item.code }} - {{item.owner}}</ion-item>
+                <ion-item *ngFor="let item of lstStock" (click)='handleClick($event, item.stockCode, item.stockNumber)'>{{ item.stockCode }} - {{item.stockNumber | number}}</ion-item>
               </ion-list>
               <ion-list id="stockInfo" style="display:none;">
-                <ion-item>Số lượng cổ phiếu phát hành: {{stockData.outstandingShares | number}}</ion-item>
-                <ion-item>Khớp lệnh: {{stockData.matchOrder | number}} VNĐ</ion-item>
+                <ion-item>Cổ phiếu sở hữu: {{ stockCode }}</ion-item>
+                <ion-item>Số lượng đang sở hữu: {{stockNumber | number}}</ion-item>
               </ion-list>
                 <ion-input name="sl_cpbuy"  id="sl_cpbuy" appIntegerInput inputmode="number" maxlength="15" type="text" (keyup)="updateList($event)" [value]="moneyValue" placeholder="Số lượng"></ion-input>
                 <input type="button" id="btm_thanhtoan" value="THANH TOÁN" (click)="handleThanhtoan(moneyValue)" />

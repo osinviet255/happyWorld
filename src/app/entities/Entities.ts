@@ -1,5 +1,6 @@
 import { ThrowStmt } from '@angular/compiler';
 import { Injectable } from '@angular/core';
+import { LoadingController } from '@ionic/angular';
 
 @Injectable()
 export class Entities {
@@ -14,6 +15,7 @@ export class Entities {
     dataObject: any;
     fullname: any;
     mobilNo: any;
+    loadingNotif: LoadingController
 
     constructor(){
 
@@ -104,5 +106,13 @@ export class Entities {
 
     setDataObject(value){
         this.dataObject = value;
+    }
+
+    getloadingNotif(){
+        return this.loadingNotif;
+    }
+
+    setloadingNotif(value){
+        this.loadingNotif = value;
     }
 }

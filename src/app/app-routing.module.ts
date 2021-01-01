@@ -77,7 +77,11 @@ const routes: Routes = [
   {
     path: 'buy-stock',
     loadChildren: () => import('./stocks/buy-stock/buy-stock.module').then( m => m.BuyStockPageModule)
+  },  {
+    path: 'sell-stock',
+    loadChildren: () => import('./stocks/sell-stock/sell-stock.module').then( m => m.SellStockPageModule)
   }
+
   
  
 ];

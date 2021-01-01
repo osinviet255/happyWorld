@@ -1,5 +1,5 @@
 <ion-content>
-  <div id="dangnhap01">
+  <!-- <div id="dangnhap01">
     <div class="headerdangnhap01">
       <form class="formLogin">
         <p class="inputform inputtk"><label>Tài khoản</label>
@@ -20,5 +20,25 @@
         <p class="dangnhapbt"> <input type="button" value="Đăng ký" (click)="Register()"></p>
       </form>
     </div>
-  </div>
+  </div> -->
+
+  <div id="container-dangkytk">
+    <div class="wrapper">
+     	<div class="logo-gioithieu"><a><img style="width: 160px;
+        margin-top: 15%;" src="../../assets/logo.png" alt="Logo" /></a></div> 
+         <div class="dangnhaptk">
+      		<h1>ĐĂNG KÝ THÔNG TIN</h1>
+            <form action="" method="post">
+            	<input type="text" name="user_dn"  id="user_dn" value=""  placeholder="Username"/>
+                <input type="email" name="email_dn"  id="email_dn" value=""  placeholder="Email"/>
+                <input type="text" name="fullname_dn"  id="fullname_dn" value=""  placeholder="Fullname"/>
+                <input type="password" placeholder='Mật khẩu' name="pass_dn" id="pass_dn" value=""  />
+                <input type="button" id="btm_dk" value="ĐĂNG KÝ" (click)="Register()" />
+            </form>
+      	 </div>
+         	
+    </div>
+  
+    
+</div>
 </ion-content>

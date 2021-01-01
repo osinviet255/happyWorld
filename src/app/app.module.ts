@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { Controller } from './BSL/controller';
 import { Entities } from './entities/Entities';
+import { common } from './BSL/common';
 
 import { HttpClientModule } from '@angular/common/http';
 import { FirebaseX } from '@ionic-native/firebase-x/ngx';
@@ -24,6 +25,7 @@ import { CurrencyPipe } from '@angular/common';
     SplashScreen,
     Controller,
     Entities,
+    common,
     FirebaseX,
     FirebaseAuthentication,
     CurrencyPipe,

@@ -18,16 +18,18 @@ export class RegisterFinalPage {
 
   mobileNo: any;
   ionViewWillEnter(){
-  //  this.mobileNo = this.glb.getMobileRegister();
-  this.mobileNo = "0965449882";
+   this.mobileNo = this.glb.getMobileRegister();
+   this.mobileNo = "0" + this.mobileNo.substring(3);
+   console.log("Mobile Register: " + this.mobileNo);
+  
   }
 
   async Register(){
-    let username = (document.getElementById('sUsername') as HTMLTextAreaElement).value;
-    let password = (document.getElementById('sPassword') as HTMLTextAreaElement).value;
-    let fullName = (document.getElementById('sFullName') as HTMLTextAreaElement).value;
-    let email = (document.getElementById('sEmail') as HTMLTextAreaElement).value;
-    let mobileNo = (document.getElementById('sMobileNo') as HTMLTextAreaElement).value;
+    let username = (document.getElementById('user_dn') as HTMLTextAreaElement).value;
+    let password = (document.getElementById('pass_dn') as HTMLTextAreaElement).value;
+    let fullName = (document.getElementById('fullname_dn') as HTMLTextAreaElement).value;
+    let email = (document.getElementById('email_dn') as HTMLTextAreaElement).value;
+    let mobileNo = this.mobileNo;
     const loading = await this.loadingNotif.create({
       message: 'Loading...',
       translucent: true

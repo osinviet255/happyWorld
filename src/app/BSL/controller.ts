@@ -1,4 +1,5 @@
 import { BuyStockPage } from './../stocks/buy-stock/buy-stock.page';
+import { SellStockPage } from './../stocks/sell-stock/sell-stock.page';
 import { Entities } from './../entities/Entities';
 import { Injectable } from '@angular/core';
 import { AlertController, ModalController } from '@ionic/angular';
@@ -56,6 +57,19 @@ export class Controller {
     if (this.crrModal) {
       this.crrModal.dismiss().then(() => { this.crrModal = null; });
     }
+  }
+
+  async showModalSellStock(){
+    const modal = await this.modalController.create({
+      component: SellStockPage,
+      cssClass: 'cssModalBuyStock',
+      backdropDismiss: true,
+      showBackdrop: true,
+      animated: true
+    });
+    await modal.present();
+    this.crrModal = modal;
+    return this.crrModal;
   }
 
   async LoginApi(username, password) {
@@ -141,8 +155,40 @@ export class Controller {
     }
   }
 
+  isEmail(search:string):boolean
+    {
+      console.log(search);
+        var  serchfind:boolean;
+
+        let regexp = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+
+        serchfind = regexp.test(search);
+
+        console.log(serchfind)
+        return serchfind
+    }
+  isPassword(search:string):boolean{
+    console.log(search);
+    var searchFind:boolean;
+    let regexp = new RegExp(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/);
+    searchFind = regexp.test(search);
+    console.log(searchFind);
+    return searchFind;
+  }
+
   async RegisterApi(username, password, fullName, email, phone) {
-    this.validateToken();
+    if(username === ''){
+      this.displayAlert("Username không được bỏ trống, vui lòng kiểm tra lại.");
+      return;
+    }
+    if(!this.isEmail(email)){
+      this.displayAlert("Địa chỉ email không hợp lệ, vui lòng kiểm tra lại.");
+      return;
+    }
+    if(!this.isPassword(password)){
+      this.displayAlert("Mật khẩu không hợp lệ. Mật khẩu phải có ít nhất 8 kí tự, bao gồm ít nhất 1 chữ số, 1 kí tự viết hoa và 1 kí tự đặc biệt. Vui lòng kiểm tra lại.");
+      return;
+    }
     const headers = { 'content-type': 'application/json' };
     let input = {
       username: username,
@@ -459,12 +505,15 @@ export class Controller {
         if (err.status === 403) {
           this.displayAlert("Phiên đăng nhập hết hiệu lực, Quý khách vui lòng đăng nhập lại.");
           localStorage.removeItem("account");
+          this.dismissModal();
+          this.dismissModalRegister();
           this.router.navigateByUrl('login');
         }
         else {
           console.log("validateToken...failed. Error: " + err.message);
         }
       })
+      this.glb.getloadingNotif().dismiss();
   }
 
   async CreateChatHistory(username, groupname, chatcontent){
@@ -562,6 +611,303 @@ export class Controller {
       .catch(err => {
         if (err.status !== 403) {
           console.log("BuyStock...failed. Error: " + err.message);
+          this.displayAlert("Có lỗi xảy ra, vui lòng thử lại sau.");
+          this.dismissModal();
+        }
+      });
+
+  }
+
+  async SearchUserStock(username){
+    this.validateToken();
+    const headers = { 'content-type': 'application/json', 'Authorization': 'Bearer ' + this.glb.getJwtTokenKey() };
+    let input = {
+      username: username,
+      pageIndex: 0,
+      pageSize: 1000000000
+    }
+    let jsonInput = JSON.stringify(input);
+    console.log("SearchUserStock input: " + jsonInput);
+    this.apiUrl = 'http://124.158.11.215:9901/happyworld/userstock/search';
+    this.output = this.httpClient.post(this.apiUrl, jsonInput, { headers: headers }).pipe(
+      timeout(120000)
+    );
+    await this.output.toPromise()
+      .then(res => {
+        console.log("SearchUserStock output: " + res.data);
+        this.glb.setLstData(res.data.content);
+      })
+      .catch(err => {
+        if (err.status !== 403) {
+          console.log("SearchUserStock...failed. Error: " + err.message);
+          this.displayAlert("Có lỗi xảy ra, vui lòng thử lại sau.");
+          this.dismissModal();
+        }
+      });
+  }
+
+  async SellStock(stockCode, stockNumber){
+    this.validateToken();
+    const headers = { 'content-type': 'application/json', 'Authorization': 'Bearer ' + this.glb.getJwtTokenKey() };
+    let input = {
+      code: Math.floor(Math.random()*(999999999-0+1)+0),
+      username: this.glb.getUsername(),
+      projectCode: 0,
+      stockCode: stockCode,
+      type: 2,
+      status: 1,
+      stockNumber: stockNumber
+    }
+    let jsonInput = JSON.stringify(input);
+    console.log("SellStock input: " + jsonInput);
+    this.apiUrl = 'http://124.158.11.215:9901/happyworld/transaction/createTransaction';
+    this.output = this.httpClient.post(this.apiUrl, jsonInput, { headers: headers }).pipe(
+      timeout(120000)
+    );
+    await this.output.toPromise()
+      .then(res => {
+        console.log("SellStock output: " + res.data);
+        if(res.data.code != "00"){
+          this.displayAlert(res.data.description);
+        }
+        else{
+          this.displayAlert("Bán cổ phiếu thành công!");
+          this.searchListUserStock(this.glb.getUsername(), 5).then(() => {
+            this.dismissModal();
+          });
+          
+        }
+      })
+      .catch(err => {
+        if (err.status !== 403) {
+          console.log("SellStock...failed. Error: " + err.message);
+          this.displayAlert("Có lỗi xảy ra, vui lòng thử lại sau.");
+          this.dismissModal();
+        }
+      });
+
+  }
+
+  async GetDoanhThuByNam(stockCode){
+    // this.validateToken();
+    const headers = { 'content-type': 'application/json', 'Authorization': 'Bearer ' + this.glb.getJwtTokenKey() };
+    let input = {
+      username: this.glb.getUsername(),
+      stockCode: stockCode,
+      transType: 2
+    }
+    let jsonInput = JSON.stringify(input);
+    console.log("GetDoanhThuByNam input: " + jsonInput);
+    this.apiUrl = 'http://124.158.11.215:9901/happyworld/transaction/getReportByYears';
+    this.output = this.httpClient.post(this.apiUrl, jsonInput, { headers: headers }).pipe(
+      timeout(120000)
+    );
+    await this.output.toPromise()
+      .then(res => {
+        console.log("GetDoanhThuByNam output: " + res.data);
+        this.glb.setLstData(res.data);
+      })
+      .catch(err => {
+        if (err.status !== 403) {
+          console.log("GetDoanhThuByNam...failed. Error: " + err.message);
+          this.displayAlert("Có lỗi xảy ra, vui lòng thử lại sau.");
+          this.dismissModal();
+        }
+        else{
+          localStorage.removeItem("account");
+          this.router.navigateByUrl('login');
+        }
+      });
+
+  }
+
+  async GetLoiNhuanByNam(stockCode){
+    // this.validateToken();
+    const headers = { 'content-type': 'application/json', 'Authorization': 'Bearer ' + this.glb.getJwtTokenKey() };
+    let input = {
+      username: this.glb.getUsername(),
+      stockCode: stockCode,
+      transType: 1
+    }
+    let jsonInput = JSON.stringify(input);
+    console.log("GetLoiNhuanByNam input: " + jsonInput);
+    this.apiUrl = 'http://124.158.11.215:9901/happyworld/transaction/getLoiNhuanByYears';
+    this.output = this.httpClient.post(this.apiUrl, jsonInput, { headers: headers }).pipe(
+      timeout(120000)
+    );
+    await this.output.toPromise()
+      .then(res => {
+        console.log("GetLoiNhuanByNam output: " + res.data);
+        this.glb.setLstData(res.data);
+      })
+      .catch(err => {
+        if (err.status !== 403) {
+          console.log("GetLoiNhuanByNam...failed. Error: " + err.message);
+          this.displayAlert("Có lỗi xảy ra, vui lòng thử lại sau.");
+          this.dismissModal();
+        }
+        else{
+          localStorage.removeItem("account");
+          this.router.navigateByUrl('login');
+        }
+      });
+
+  }
+
+  async GetDoanhThuByQuy(stockCode){
+    // this.validateToken();
+    const headers = { 'content-type': 'application/json', 'Authorization': 'Bearer ' + this.glb.getJwtTokenKey() };
+    let input = {
+      username: this.glb.getUsername(),
+      stockCode: stockCode,
+      transType: 2
+    }
+    let jsonInput = JSON.stringify(input);
+    console.log("GetDoanhThuByQuy input: " + jsonInput);
+    this.apiUrl = 'http://124.158.11.215:9901/happyworld/transaction/getReportByQuy';
+    this.output = this.httpClient.post(this.apiUrl, jsonInput, { headers: headers }).pipe(
+      timeout(120000)
+    );
+    await this.output.toPromise()
+      .then(res => {
+        console.log("GetDoanhThuByQuy output: " + res.data);
+        this.glb.setLstData(res.data);
+      })
+      .catch(err => {
+        if (err.status !== 403) {
+          console.log("GetDoanhThuByQuy...failed. Error: " + err.message);
+          this.displayAlert("Có lỗi xảy ra, vui lòng thử lại sau.");
+          this.dismissModal();
+        }
+        else{
+          localStorage.removeItem("account");
+          this.router.navigateByUrl('login');
+        }
+      });
+
+  }
+
+  async GetLoiNhuanByQuy(stockCode){
+    // this.validateToken();
+    const headers = { 'content-type': 'application/json', 'Authorization': 'Bearer ' + this.glb.getJwtTokenKey() };
+    let input = {
+      username: this.glb.getUsername(),
+      stockCode: stockCode,
+      transType: 1
+    }
+    let jsonInput = JSON.stringify(input);
+    console.log("GetLoiNhuanByQuy input: " + jsonInput);
+    this.apiUrl = 'http://124.158.11.215:9901/happyworld/transaction/getLoiNhuanByQuy';
+    this.output = this.httpClient.post(this.apiUrl, jsonInput, { headers: headers }).pipe(
+      timeout(120000)
+    );
+    await this.output.toPromise()
+      .then(res => {
+        console.log("GetLoiNhuanByQuy output: " + res.data);
+        this.glb.setLstData(res.data);
+      })
+      .catch(err => {
+        if (err.status !== 403) {
+          console.log("GetLoiNhuanByQuy...failed. Error: " + err.message);
+          this.displayAlert("Có lỗi xảy ra, vui lòng thử lại sau.");
+          this.dismissModal();
+        }
+        else{
+          localStorage.removeItem("account");
+          this.router.navigateByUrl('login');
+        }
+      });
+
+  }
+
+  async GetDoanhThuByThang(stockCode){
+    // this.validateToken();
+    const headers = { 'content-type': 'application/json', 'Authorization': 'Bearer ' + this.glb.getJwtTokenKey() };
+    let input = {
+      username: this.glb.getUsername(),
+      stockCode: stockCode,
+      transType: 2
+    }
+    let jsonInput = JSON.stringify(input);
+    console.log("GetDoanhThuByThang input: " + jsonInput);
+    this.apiUrl = 'http://124.158.11.215:9901/happyworld/transaction/getReportByMonth';
+    this.output = this.httpClient.post(this.apiUrl, jsonInput, { headers: headers }).pipe(
+      timeout(120000)
+    );
+    await this.output.toPromise()
+      .then(res => {
+        console.log("GetDoanhThuByThang output: " + res.data);
+        this.glb.setLstData(res.data);
+      })
+      .catch(err => {
+        if (err.status !== 403) {
+          console.log("GetDoanhThuByThang...failed. Error: " + err.message);
+          this.displayAlert("Có lỗi xảy ra, vui lòng thử lại sau.");
+          this.dismissModal();
+        }
+        else{
+          localStorage.removeItem("account");
+          this.router.navigateByUrl('login');
+        }
+      });
+
+  }
+
+  async GetLoiNhuanByThang(stockCode){
+    // this.validateToken();
+    const headers = { 'content-type': 'application/json', 'Authorization': 'Bearer ' + this.glb.getJwtTokenKey() };
+    let input = {
+      username: this.glb.getUsername(),
+      stockCode: stockCode,
+      transType: 1
+    }
+    let jsonInput = JSON.stringify(input);
+    console.log("GetLoiNhuanByThang input: " + jsonInput);
+    this.apiUrl = 'http://124.158.11.215:9901/happyworld/transaction/getLoiNhuanByMonth';
+    this.output = this.httpClient.post(this.apiUrl, jsonInput, { headers: headers }).pipe(
+      timeout(120000)
+    );
+    await this.output.toPromise()
+      .then(res => {
+        console.log("GetLoiNhuanByThang output: " + res.data);
+        this.glb.setLstData(res.data);
+      })
+      .catch(err => {
+        if (err.status !== 403) {
+          console.log("GetLoiNhuanByThang...failed. Error: " + err.message);
+          this.displayAlert("Có lỗi xảy ra, vui lòng thử lại sau.");
+          this.dismissModal();
+        }
+        else{
+          localStorage.removeItem("account");
+          this.router.navigateByUrl('login');
+        }
+      });
+
+  }
+
+  async GetListConfirmProj(){
+    this.validateToken();
+    const headers = { 'content-type': 'application/json', 'Authorization': 'Bearer ' + this.glb.getJwtTokenKey() };
+    let input = {
+      status: 1,
+      pageIndex: 0,
+      pageSize: 10
+    }
+    let jsonInput = JSON.stringify(input);
+    console.log("GetListConfirmProj input: " + jsonInput);
+    this.apiUrl = 'http://124.158.11.215:9901/happyworld/project/searchProject';
+    this.output = this.httpClient.post(this.apiUrl, jsonInput, { headers: headers }).pipe(
+      timeout(120000)
+    );
+    await this.output.toPromise()
+      .then(res => {
+        console.log("GetListConfirmProj output: " + res.data);
+        this.glb.setLstData(res.data.content);
+      })
+      .catch(err => {
+        if (err.status !== 403) {
+          console.log("GetListConfirmProj...failed. Error: " + err.message);
           this.displayAlert("Có lỗi xảy ra, vui lòng thử lại sau.");
           this.dismissModal();
         }

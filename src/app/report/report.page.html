@@ -2,27 +2,37 @@
   <div class="divDangnhap"></div>
   <div class="wrapper">
     <div id="headertop " class="duanpage">
-          <div class="duan"><span>Dự án</span></div>
+          <div class="duan" (click)="displayListProj()"><span>{{projName}}</span></div>
+          
           <div class="thongbao">
               <div class="count-thongbao"><span>15</span></div>
           </div>
+          
     </div><!--end headertop-->
-      <div class="tab">
-        <ul><li><a>THÁNG</a></li><li><a>QUÝ</a></li><li class="activetab"><a>NĂM</a></li></ul>
+    <ion-content id="projInfo" style="width: 100%; height: 50%; position:absolute; top: 12%; left: 3%; width: 95%; display: none">
+      <ion-list>
+        <ion-item *ngFor="let item of lstProjInfo" (click)="handleClick(item.id, item.name)" ><div *ngIf="item.name.length >= 20; else nameProj">{{item.name.substring(0, 20)}}...</div>
+          <ng-template #nameProj>
+            {{item.name}}
+        </ng-template> - <div *ngIf="item.owner.length >= 20; else ownerProj">&nbsp;{{item.owner.substring(0, 20)}}...</div>
+        <ng-template #ownerProj>
+          {{item.owner}}
+      </ng-template></ion-item>
+      </ion-list>
+    </ion-content>
+    
+      <div class="tab">        
+        <ul><li id="idThang" (click)="reportThang();"><a>THÁNG</a></li><li id="idQuy" (click)="reportQuy();"><a>QUÝ</a></li><li class="activetab" id="idNam" (click)="reportNam();"><a>NĂM</a></li></ul>
       </div>
   <div class="row1 doanhthurow">
     <div class="title-topdt"><div class="doanhthu-title"><h3><span>Doanh thu</span></h3></div>
-      <div class="tongdt"><h3><span>5,329,506,000</span></h3></div></div>
+      <div class="tongdt"><h3><span>{{totalDoanhThu | number}}</span></h3></div></div>
       <canvas #lineCanvas></canvas>
 </div><!--end row1-->
   <div class="row1 loinhuanrow">
     <div class="title-topdt"><div class="loinhuan-title"><h3><span>Lợi nhuận</span></h3></div>
-      <div class="tongdt"><h3><span>5,087,506,000</span></h3></div></div>
+      <div class="tongdt"><h3><span>{{totalLoiNhuan | number}}</span></h3></div></div>
       <canvas #lineCanvasLoinhuan></canvas>
-</div><!--end row1-->
-    <div class="row1 cpvanhanh">
-    <div class="title-topdt"><div class="cp-title"><h3>Chi phí vận hành</h3></div>
-      <div class="tongdt"><h3><span>347,506,000</span></h3></div></div>
 </div><!--end row1-->
  <div class="sotiennap lichsugd" (click)="gotoHistory()">Lịch sử giao dịch</div>
 </div>
