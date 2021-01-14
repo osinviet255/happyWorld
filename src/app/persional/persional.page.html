@@ -10,8 +10,8 @@
             style="width: 24px; margin-bottom: -5px; margin-left: -9px;" /></p>
         </div>
       </div>
-      <div class="thongbao">
-        <div class="count-thongbao"><span>15</span></div>
+      <div class="thongbao" (click)="gotoNotification()">
+        <div class="count-thongbao"><span>{{notifCount}}</span></div>
       </div>
     </div>
     <!--end headertop-->
@@ -25,14 +25,11 @@
     <h2 class="canhan-title">Cá nhân</h2>
     <div class="row2">
       <ul>
-        <li class="firstli thongtincn">
+        <li class="firstli thongtincn" (click)="gotoUserInfo()">
           <h3><span>Thông tin cá nhân</span></h3>
         </li>
-        <li class="taikhoan">
+        <li class="taikhoan" (click)="gotoEditUser()">
           <h3><span>Tài khoản</span></h3>
-        </li>
-        <li class="hopdong lastli">
-          <h3><span>Hợp đồng</span></h3>
         </li>
       </ul>
     </div>
@@ -40,13 +37,13 @@
     <h2 class="tintuc-title">Tin tức</h2>
     <div class="row3">
       <ul>
-        <li class="dautu">
+        <li class="dautu" (click)="goToListNews(7)">
           <h3><span>Đầu tư</span></h3>
         </li>
-        <li class="xahoi">
+        <li class="xahoi" (click)="goToListNews(8)">
           <h3><span>Xã hội</span></h3>
         </li>
-        <li class="taichinh lastli">
+        <li class="taichinh lastli" (click)="goToListNews(9)">
           <h3><span>Tài chính</span></h3>
         </li>
       </ul>

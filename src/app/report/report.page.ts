@@ -30,6 +30,7 @@ export class ReportPage {
   datas = new Array();
   labelsLoiNhuan = new Array;
   datasLoiNhuan = new Array();
+  notifCount: any;
   constructor(private router: Router,
     private ctl: Controller,
     private glb: Entities,
@@ -48,6 +49,7 @@ export class ReportPage {
     this.ctl.GetListConfirmProj().then(() => {
       this.lstProjInfo = this.glb.getLstData();
     });
+    this.countUnreadNotif();
   }
 
   clearData(){
@@ -494,6 +496,19 @@ export class ReportPage {
           this.GetReportNam();
         }
       }
+    });
+  }
+
+  gotoNotification(){
+    this.router.navigateByUrl('notification');
+    this.notifCount = this.countUnreadNotif();
+  }
+
+  countUnreadNotif(){
+    this.ctl.countUnreadNotif(0, 0, 0, 50).then(() => {
+      this.notifCount = this.glb.getLstData().length;
+      this.glb.setNotifCount(this.notifCount);
+      this.notifCount = this.glb.getNotifCount();
     });
   }
 

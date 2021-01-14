@@ -21,7 +21,7 @@ export class NapTienPage {
   }
 
   naptien(money) {
-    money = money.toString().replaceAll(".","");
+    money = money.toString().replace(".", '').replace(".", '').replace(".", '').replace(".", '').replace(".", '').replace(".", '').replace(".", '').replace(".", '').replace(".", '').replace(".", '').replace(".", '').replace(".", '').replace(".", '');
     if(Number(money) && Number(money) >= 50000){
       this.ctl.createMoneyTrans(this.ctl.randomString(10), this.glb.getUsername(), 0, money, 0);
     }

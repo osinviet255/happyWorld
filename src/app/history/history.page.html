@@ -1,16 +1,29 @@
+
 <ion-content>
+  <ion-content style="width: 100%; height: 208px;">
   <div class="wrapper">
-    <div class="header-search">
-      <form>
-        <ion-searchbar #inputSearch placeholder="Tìm kiếm"></ion-searchbar>
-      </form>
-    </div>
-    <div class="header-title" (click)="goBack()"><a>
-        <div class="prevtitle"><img src="../../assets/naptien/icon-prev.jpg" alt="Prev" /></div>
-        <h1>Lịch sử giao dịch</h1>
-      </a>
-    </div>
+    
+      <div class="header-search">
+        <ion-searchbar #inputSearch [(ngModel)]="searchValue" placeholder="Tìm kiếm"></ion-searchbar>
+        <ion-item>
+          <ion-label>From Date:</ion-label>
+          <ion-datetime display-format="DD/MM/YYYY" [(ngModel)]="fromDate" value="{{dFromDay}}"></ion-datetime>
+        </ion-item>
+        <ion-item>
+          <ion-label>To Date:</ion-label>
+          <ion-datetime display-format="DD/MM/YYYY" [(ngModel)]="toDate" value="{{currentDay}}"></ion-datetime>
+        </ion-item>
+        <p style="float: right; margin-right: 20px;"> <input type="button" value="Tìm kiếm" (click)="handleSearch()"></p>
+      </div>
+      <div class="header-title" (click)="goBack()" style="margin-top: -5px;"><a>
+          <div class="prevtitle"><img src="../../assets/naptien/icon-prev.jpg" alt="Prev" /></div>
+          <h1>Lịch sử giao dịch</h1>
+        </a>
+      </div>
+      
   </div>
+</ion-content>
+<ion-content style="width: 100%; height: 78%;">
   <div class="lichsugiaodich">
     <div class="rowlichsu1">
       <div class="wrapper">
@@ -21,125 +34,31 @@
         <div class="collichsu">Thành viên</div>
       </div>
     </div>
-    <div class="rowlichsu">
+    <div class="rowlichsu" *ngFor="let item of lstHistory">
       <div class="rowWrapper">
-        <div class="ngayls collichsu">16:00
-          23/11/2020</div>
-        <div class="cophieunls collichsu">STB</div>
-        <div class="solieuls collichsu">22,555</div>
-        <div class="giaodichls collichsu"><a>MUA</a></div>
-        <div class="thanhvienls collichsu"><img src="../../assets/groupchat/lichsugd.jpg" alt="Báo cáo" /></div>
+        <div class="ngayls collichsu">{{item.payDate | date : "HH:mm"}}
+          {{item.payDate | date : "dd/MM/yyyy"}}</div>
+        <div class="cophieunls collichsu">{{item.stockCode}}</div>
+        <div class="solieuls collichsu">{{item.stockNumber | number}}</div>
+        <div class="giaodichls collichsu"><a *ngIf="item.type === 1; else transType" style="background-color: red;">
+          MUA
+        </a>
+        <ng-template #transType>
+          <a>
+          BÁN
+        </a>
+      </ng-template>
+        </div>
+        <div class="thanhvienls collichsu">{{item.username}}</div>
+        <!-- <div class="thanhvienls collichsu"><img src="../../assets/groupchat/lichsugd.jpg" alt="Báo cáo" /></div> -->
       </div>      
     </div>
-    <div class="rowlichsu">
-      <div class="rowWrapper">
-        <div class="ngayls collichsu">16:00
-          23/11/2020</div>
-        <div class="cophieunls collichsu">STB</div>
-        <div class="solieuls collichsu">22,555</div>
-        <div class="giaodichls collichsu"><a>MUA</a></div>
-        <div class="thanhvienls collichsu"><img src="../../assets/groupchat/lichsugd.jpg" alt="Báo cáo" /></div>
-      </div>      
-    </div>
-    <div class="rowlichsu">
-      <div class="rowWrapper">
-        <div class="ngayls collichsu">16:00
-          23/11/2020</div>
-        <div class="cophieunls collichsu">STB</div>
-        <div class="solieuls collichsu">22,555</div>
-        <div class="giaodichls collichsu"><a>MUA</a></div>
-        <div class="thanhvienls collichsu"><img src="../../assets/groupchat/lichsugd.jpg" alt="Báo cáo" /></div>
-      </div>      
-    </div>
-    <div class="rowlichsu">
-      <div class="rowWrapper">
-        <div class="ngayls collichsu">16:00
-          23/11/2020</div>
-        <div class="cophieunls collichsu">STB</div>
-        <div class="solieuls collichsu">22,555</div>
-        <div class="giaodichls collichsu"><a>MUA</a></div>
-        <div class="thanhvienls collichsu"><img src="../../assets/groupchat/lichsugd.jpg" alt="Báo cáo" /></div>
-      </div>      
-    </div>
-    <div class="rowlichsu">
-      <div class="rowWrapper">
-        <div class="ngayls collichsu">16:00
-          23/11/2020</div>
-        <div class="cophieunls collichsu">STB</div>
-        <div class="solieuls collichsu">22,555</div>
-        <div class="giaodichls collichsu"><a>MUA</a></div>
-        <div class="thanhvienls collichsu"><img src="../../assets/groupchat/lichsugd.jpg" alt="Báo cáo" /></div>
-      </div>      
-    </div>
-    <div class="rowlichsu">
-      <div class="rowWrapper">
-        <div class="ngayls collichsu">16:00
-          23/11/2020</div>
-        <div class="cophieunls collichsu">STB</div>
-        <div class="solieuls collichsu">22,555</div>
-        <div class="giaodichls collichsu"><a>MUA</a></div>
-        <div class="thanhvienls collichsu"><img src="../../assets/groupchat/lichsugd.jpg" alt="Báo cáo" /></div>
-      </div>      
-    </div>
-    <div class="rowlichsu">
-      <div class="rowWrapper">
-        <div class="ngayls collichsu">16:00
-          23/11/2020</div>
-        <div class="cophieunls collichsu">STB</div>
-        <div class="solieuls collichsu">22,555</div>
-        <div class="giaodichls collichsu"><a>MUA</a></div>
-        <div class="thanhvienls collichsu"><img src="../../assets/groupchat/lichsugd.jpg" alt="Báo cáo" /></div>
-      </div>      
-    </div>
-    <div class="rowlichsu">
-      <div class="rowWrapper">
-        <div class="ngayls collichsu">16:00
-          23/11/2020</div>
-        <div class="cophieunls collichsu">STB</div>
-        <div class="solieuls collichsu">22,555</div>
-        <div class="giaodichls collichsu"><a>MUA</a></div>
-        <div class="thanhvienls collichsu"><img src="../../assets/groupchat/lichsugd.jpg" alt="Báo cáo" /></div>
-      </div>      
-    </div>
-    <div class="rowlichsu">
-      <div class="rowWrapper">
-        <div class="ngayls collichsu">16:00
-          23/11/2020</div>
-        <div class="cophieunls collichsu">STB</div>
-        <div class="solieuls collichsu">22,555</div>
-        <div class="giaodichls collichsu"><a>MUA</a></div>
-        <div class="thanhvienls collichsu"><img src="../../assets/groupchat/lichsugd.jpg" alt="Báo cáo" /></div>
-      </div>      
-    </div>
-    <div class="rowlichsu">
-      <div class="rowWrapper">
-        <div class="ngayls collichsu">16:00
-          23/11/2020</div>
-        <div class="cophieunls collichsu">STB</div>
-        <div class="solieuls collichsu">22,555</div>
-        <div class="giaodichls collichsu"><a>MUA</a></div>
-        <div class="thanhvienls collichsu"><img src="../../assets/groupchat/lichsugd.jpg" alt="Báo cáo" /></div>
-      </div>      
-    </div>
-    <div class="rowlichsu">
-      <div class="rowWrapper">
-        <div class="ngayls collichsu">16:00
-          23/11/2020</div>
-        <div class="cophieunls collichsu">STB</div>
-        <div class="solieuls collichsu">22,555</div>
-        <div class="giaodichls collichsu"><a>MUA</a></div>
-        <div class="thanhvienls collichsu"><img src="../../assets/groupchat/lichsugd.jpg" alt="Báo cáo" /></div>
-      </div>      
-    </div>
-    <div class="rowlichsu">
-      <div class="rowWrapper">
-        <div class="ngayls collichsu">16:00
-          23/11/2020</div>
-        <div class="cophieunls collichsu">STB</div>
-        <div class="solieuls collichsu">22,555</div>
-        <div class="giaodichls collichsu"><a>MUA</a></div>
-        <div class="thanhvienls collichsu"><img src="../../assets/groupchat/lichsugd.jpg" alt="Báo cáo" /></div>
-      </div>      
-    </div>
+    <ion-infinite-scroll threshold="50px" (ionInfinite)="loadMoreData($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="Loading more data...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
   </div>
+</ion-content>
 </ion-content>

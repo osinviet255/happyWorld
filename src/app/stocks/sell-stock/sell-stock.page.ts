@@ -1,3 +1,4 @@
+import { NavController } from '@ionic/angular';
 import { Component } from '@angular/core';
 import { common } from 'src/app/BSL/common';
 import { Controller } from 'src/app/BSL/controller';
@@ -12,12 +13,14 @@ export class SellStockPage {
 
   constructor(private ctl: Controller,
     private glb: Entities,
-    private cmd: common) { }
+    private cmd: common, 
+    private nav: NavController) { }
     lstStock: [];
     moneyInput: any;
     moneyValue: any;
     stockCode: any;
     stockNumber: any;
+    tencpsell: any;
 
     ionViewWillEnter() {
       //Load list Stock has status = 1 (Da duyet)
@@ -53,8 +56,9 @@ export class SellStockPage {
     handleClick(event, item, amount) {
       const parent = document.getElementById('listStock') as HTMLElement;
       parent.style.display = 'block'
-      const input = document.querySelector('ion-input');
-      input.value = item;
+      // const input = document.querySelector('ion-input');
+      // input.value = item;
+      this.tencpsell = item;
       parent.style.display = 'none';
       this.stockCode = item;
       this.stockNumber = amount;
@@ -67,17 +71,34 @@ export class SellStockPage {
     }
 
     handleThanhtoan(stocknum){
-      stocknum = stocknum.toString().replaceAll(".","");
-      if(!Number(stocknum)){
-        this.ctl.displayAlert("Số lượng cổ phiếu không hợp lệ, vui lòng kiểm tra lại");
-      }
-      else if(stocknum <= 0){
-        this.ctl.displayAlert("Số lượng cổ phiếu không hợp lệ, số lượng phải lớn hơn 0");
+      if(stocknum === undefined){
+        this.ctl.displayAlert("Số lượng cổ phiếu không được bỏ trống, vui lòng kiểm tra lại.")
       }
       else{
-        const input = document.querySelector('ion-input');
-        this.ctl.SellStock(input.value, stocknum);
+        stocknum = stocknum.toString().replace(".", '').replace(".", '').replace(".", '').replace(".", '').replace(".", '').replace(".", '').replace(".", '').replace(".", '').replace(".", '').replace(".", '');
+        if(!Number(stocknum) || stocknum.toString() === ""){
+          this.ctl.displayAlert("Số lượng cổ phiếu không hợp lệ, vui lòng kiểm tra lại");
+        }
+        else if(stocknum <= 0){
+          this.ctl.displayAlert("Số lượng cổ phiếu không hợp lệ, số lượng phải lớn hơn 0");
+        }
+        else{
+          if(this.tencpsell === undefined || this.tencpsell === ''){
+            this.ctl.displayAlert("Mã cổ phiếu không được bỏ trống.");
+          }
+          else{
+            this.ctl.SellStock(this.tencpsell, stocknum).then(() => {
+              this.nav.pop();
+            });
+          }
+          
+        }
       }
+      
+    }
+
+    goBack(){
+      this.nav.pop();
     }
 
 }

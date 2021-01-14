@@ -1,0 +1,48 @@
+#topheader {
+    background: url(../../../assets/bg-topthongbao.jpg) no-repeat;
+    background-size: 100%;
+    margin-top: 0px;    overflow: hidden; 
+    padding-bottom: 20px;
+    padding-top: 15px;
+    padding-left: 13px;
+}
+#topheader .wrapper div, #tabthongbao div{     width:33.3333333%;
+    float: left;}
+.lefttoptb img{ width: 16px;}
+.centertoptb{     font-size: 20px; color: #fff; text-align: center; padding-top: 3px;}
+.righttoptb{ text-align: right; color: #fff}
+.righttoptb img{ width: 20%;    margin-left: 27px;}
+#tabthongbao{     background: #fff;
+    text-align: center;
+    font-size: 14px;padding-top: 10px; overflow: hidden ; clear: both}
+#tabthongbao a{     color: #969696;}
+#tabthongbao .active{    padding-bottom:8px;
+    border-bottom: 3px solid #0d53b3;}
+#container-thongbao{ background: #f5f5f5;    padding-bottom: 40px; padding-left: 10px; padding-right: 10px;}
+.topcontent div{ width: 50%; float: left;    font-size: 16px;} 
+.topcontent div a{  
+    color: #969696;
+    padding: 9px 27px;
+    border-radius: 67px;
+    font-size: 13px;}
+.topcontent{overflow: hidden;
+    clear: both;
+    padding-top: 23px;
+    padding-bottom: 23px;}
+.right_topcontent{    text-align: right;
+    color: #969696;
+    font-size: 35px;}
+.content{ background: #fff;    padding-bottom: 100px;
+    padding: 15px; border-radius: 10px;}
+.content img{    width: 100%;}
+.content p{ font-size: 13px; color: #969696;    margin-bottom: 35px;}
+#menu-bottom{ background: #fff; border-top: 1px solid #969696; padding-top: 30px; padding-bottom: 30px; }
+#menu-bottom .wrapper div{ width: 25%; float: left; text-align: center}
+#menu-bottom .wrapper div a{ color: #333}
+.thongbao{
+    width: 23% !important;
+    float: right !important;
+}
+.thongbao .count-thongbao{
+    width: 100% !important;
+}

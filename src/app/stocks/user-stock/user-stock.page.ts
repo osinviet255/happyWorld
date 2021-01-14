@@ -13,6 +13,7 @@ export class UserStockPage {
 
   userStock: [];
   stockData: any;
+  searchInput: any;
 
   constructor(private nav: NavController,
     private ctl: Controller,
@@ -20,7 +21,7 @@ export class UserStockPage {
     private router: Router) { }
 
   ionViewWillEnter() {
-    this.ctl.searchListUserStock(this.glb.getUsername(), 10).then(() => {
+    this.ctl.searchListUserStock(this.searchInput, this.glb.getUsername(), 10).then(() => {
       this.userStock = this.glb.getLstData();
     });
 
@@ -39,6 +40,12 @@ export class UserStockPage {
       this.ctl.getProjectById(idProj).then(() => {
         this.router.navigate(['project-detail']);
       });
+    });
+  }
+
+  handleSearch(){
+    this.ctl.searchListUserStock(this.searchInput, this.glb.getUsername(), 10).then(() => {
+      this.userStock = this.glb.getLstData();
     });
   }
 

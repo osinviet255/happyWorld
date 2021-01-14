@@ -1,0 +1,73 @@
+.header-search{ margin-top: 3%;margin-bottom: 5%;}
+.header-search input{    width: 97%;    padding-left: 2%;
+    background: #ebebeb;
+    border: none;
+    border-radius: 5px; float: left;
+    height: 65px;    font-size: 36px;
+   }
+ion-input::placeholder{ font-size: 15px; color: #808080;}
+.header-search button{ position: relative;
+    border: none;
+    background: none;
+    float: right;
+    margin-top: -30px;
+    z-index: 1;}
+.header-search img{
+    width: 24px;
+}
+.header-search form{
+    background: #eee;
+}
+.titlechude{ font-size: 20px;}
+.chude, .rowlichsu{ overflow: hidden; clear: both; width: 100%; margin-left: -40px;}
+.chude li{ width: 30%; float: left;text-align: center;
+    padding: 15px 0;
+    border-radius: 7px;}
+.chude ul{
+    list-style-type: none;
+}
+.chude li.duan{ margin: 0 5%;background: url(../../../assets/cacchude/bg-duan.jpg) repeat-x;}
+.chude li.tatca{ background: url(../../../assets/cacchude/bg-tatca.jpg) repeat-x;}
+.chude li.tintuc{background: url(../../../assets/cacchude/bg-tintuc.jpg) repeat-x;}
+.chude li a{ font-size: 20px;
+     text-align: center; 
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;}
+.cacchude-xemthem{     overflow: hidden;
+    margin-top: 5%;
+    clear: both;
+    width: 100%;}
+.cacchude-xemthem h2{        font-size: 25px;
+    width: 50%;
+    float: left;}
+.cacchude-xemthem  .xemthem-duan{ width: 50%; float: left;    padding-top: 6%; text-align: right}
+.cacchude-xemthem  .xemthem-duan a{ font-size: 15px; color: #0d64db; text-decoration: none}
+.noidungchude{    border-top: 1px solid #cccccc;
+    padding-top: 5%;
+}
+.rowchude{overflow: hidden;
+    margin-bottom: 3%;}
+	.imgtin{ width: 21%; float: left; margin-right: 2%; }
+	.noidungtin{ width: 77%; float: left; margin-top: -10px;}
+.noidungtin h3{ margin-top: 0px;    margin-bottom: 5px;} 
+.noidungtin h3 a{    font-size: 15px;
+    color: #323232;
+    text-decoration: none;}
+.noidungtin  .datetime, .description-tin{ font-size: 15px; color: #323232;}
+.noidungtin  .datetime{margin-bottom: 2%;}
+.imgtin img{    width: 100%;}
+#container-chude{
+    width: 95%; 
+    margin: 0 auto;
+}
+ion-input{
+    background: #eee;
+    width: 92%;
+    z-index: 2;
+}
+.prevdn {
+    padding-top: 20px !important;
+    padding-lefT: 0px !important;
+    padding-bottom: 0px !important;
+}

@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import * as moment from 'moment';
 import { Entities } from './entities/Entities';
 import * as firebase from 'firebase';
+import { FcmService } from './services/fcm.service';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +20,7 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private router: Router,
-    private glb: Entities
+    private glb: Entities    
   ) {
     this.initializeApp();
   }
@@ -40,7 +41,6 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
       //Initial Firebase
-      
       firebase.initializeApp(this.firebaseConfig);
       const sItem = localStorage.getItem('account');
       const item = JSON.parse(sItem);

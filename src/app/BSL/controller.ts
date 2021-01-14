@@ -1,15 +1,17 @@
+import { AddConversationPage } from './../add-conversation/add-conversation.page';
 import { BuyStockPage } from './../stocks/buy-stock/buy-stock.page';
 import { SellStockPage } from './../stocks/sell-stock/sell-stock.page';
 import { Entities } from './../entities/Entities';
 import { Injectable } from '@angular/core';
 import { AlertController, ModalController } from '@ionic/angular';
 import { RegisterPage } from '../register/register.page';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpInterceptor, HttpParams } from '@angular/common/http';
 import { timeout } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
+import { FcmService } from '../services/fcm.service';
 @Injectable()
-export class Controller {
+export class Controller{
   crrModal: any = null;
   apiUrl: string;
   output: any;
@@ -72,6 +74,19 @@ export class Controller {
     return this.crrModal;
   }
 
+  async showModalAddConversation(){
+    const modal = await this.modalController.create({
+      component: AddConversationPage,
+      cssClass: 'cssModalConversation',
+      backdropDismiss: true,
+      showBackdrop: true,
+      animated: true
+    });
+    await modal.present();
+    this.crrModal = modal;
+    return this.crrModal;
+  }
+
   async LoginApi(username, password) {
     const headers = { 'content-type': 'application/json' };
     let input = {
@@ -111,7 +126,7 @@ export class Controller {
               mobileNo: res.data.mobileNo
             }
             localStorage.setItem('account', JSON.stringify(item));
-            this.searchListUserStock(this.glb.getUsername(), 5).then(() => {              
+            this.searchListUserStock(null, this.glb.getUsername(), 5).then(() => {              
               this.router.navigateByUrl('tabs');
             });            
           }
@@ -286,7 +301,7 @@ export class Controller {
     }
     let jsonInput = JSON.stringify(input);
     console.log("sendEmail input: " + jsonInput);
-    this.apiUrl = 'https://uat-api.1sg.vn/api/WebAutomate/SendEmailV2';
+    this.apiUrl = 'https://api.1sg.vn/api/WebAutomate/SendEmailV2';
     this.output = this.httpClient.post(this.apiUrl, jsonInput, { headers: headers }).pipe(
       timeout(120000)
     );
@@ -303,7 +318,7 @@ export class Controller {
 
   randomString(length) {
     let result = '';
-    let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789~!@#$%^&*()_+=-/.<,>{[}]|';
+    let characters = '0123456789';
     let charactersLength = characters.length;
     for (var i = 0; i < length; i++) {
       result += characters.charAt(Math.floor(Math.random() * charactersLength));
@@ -354,10 +369,11 @@ export class Controller {
       });
   }
 
-  async searchListUserStock(username, pageSize) {
+  async searchListUserStock(stockCode, username, pageSize) {
     this.validateToken();
     const headers = { 'content-type': 'application/json', 'Authorization': 'Bearer ' + this.glb.getJwtTokenKey() };
     let input = {
+      stockCode: stockCode,
       username: username,
       pageIndex: 0,
       pageSize: pageSize
@@ -381,14 +397,16 @@ export class Controller {
       })
   }
 
-  async searchProjectByType(typeId) {
+  async searchProjectByType(projName, typeId, pageIndex,  pageSize) {
     this.validateToken();
     console.log("ID: " + typeId);
     const headers = { 'content-type': 'application/json', 'Authorization': 'Bearer ' + this.glb.getJwtTokenKey() };
     let input = {
+      name: projName,
       projectTypeId: typeId,
-      pageIndex: 0,
-      pageSize: 10
+      status: 1,
+      pageIndex: pageIndex,
+      pageSize: pageSize
     }
     let jsonInput = JSON.stringify(input);
     console.log("searchProjectByType input: " + jsonInput);
@@ -506,14 +524,14 @@ export class Controller {
           this.displayAlert("Phiên đăng nhập hết hiệu lực, Quý khách vui lòng đăng nhập lại.");
           localStorage.removeItem("account");
           this.dismissModal();
-          this.dismissModalRegister();
+          this.dismissModalRegister();          
           this.router.navigateByUrl('login');
         }
         else {
           console.log("validateToken...failed. Error: " + err.message);
         }
       })
-      this.glb.getloadingNotif().dismiss();
+      
   }
 
   async CreateChatHistory(username, groupname, chatcontent){
@@ -602,8 +620,8 @@ export class Controller {
         }
         else{
           this.displayAlert("Mua cổ phiếu thành công!");
-          this.searchListUserStock(this.glb.getUsername(), 5).then(() => {
-            this.dismissModal();
+          this.searchListUserStock(null, this.glb.getUsername(), 5).then(() => {
+            // this.dismissModal();
           });
           
         }
@@ -612,7 +630,7 @@ export class Controller {
         if (err.status !== 403) {
           console.log("BuyStock...failed. Error: " + err.message);
           this.displayAlert("Có lỗi xảy ra, vui lòng thử lại sau.");
-          this.dismissModal();
+          // this.dismissModal();
         }
       });
 
@@ -672,8 +690,8 @@ export class Controller {
         }
         else{
           this.displayAlert("Bán cổ phiếu thành công!");
-          this.searchListUserStock(this.glb.getUsername(), 5).then(() => {
-            this.dismissModal();
+          this.searchListUserStock(null, this.glb.getUsername(), 5).then(() => {
+            // this.dismissModal();
           });
           
         }
@@ -682,7 +700,7 @@ export class Controller {
         if (err.status !== 403) {
           console.log("SellStock...failed. Error: " + err.message);
           this.displayAlert("Có lỗi xảy ra, vui lòng thử lại sau.");
-          this.dismissModal();
+          // this.dismissModal();
         }
       });
 
@@ -914,4 +932,360 @@ export class Controller {
       });
 
   }
+
+  async GetListTransHistory(stockCode, fromDate, toDate, pageIndex){
+    this.validateToken();
+    const headers = { 'content-type': 'application/json', 'Authorization': 'Bearer ' + this.glb.getJwtTokenKey() };
+    let input = {
+      stockCode: stockCode,
+      username: this.glb.getUsername(),
+      fromDate: fromDate,
+      toDate: toDate,
+      pageIndex: pageIndex,
+      pageSize: 10
+    }
+    let jsonInput = JSON.stringify(input);
+    console.log("GetListTransHistory input: " + jsonInput);
+    this.apiUrl = 'http://124.158.11.215:9901/happyworld/transaction/searchTransaction';
+    this.output = this.httpClient.post(this.apiUrl, jsonInput, { headers: headers }).pipe(
+      timeout(120000)
+    );
+    await this.output.toPromise()
+      .then(res => {
+        console.log("GetListTransHistory output: " + res.data);
+        this.glb.setLstData(res.data.content);
+      })
+      .catch(err => {
+        if (err.status !== 403) {
+          console.log("GetListTransHistory...failed. Error: " + err.message);
+          this.displayAlert("Có lỗi xảy ra, vui lòng thử lại sau.");
+          this.dismissModal();
+        }
+      });
+
+  }
+
+  async GetUserByUsername(username){
+    this.validateToken();
+    const headers = { 'content-type': 'application/json', 'Authorization': 'Bearer ' + this.glb.getJwtTokenKey() };
+    let input = {
+      username: username,
+      pageIndex: 0,
+      pageSize: 10
+    }
+    let jsonInput = JSON.stringify(input);
+    console.log("GetUserByUsername input: " + jsonInput);
+    this.apiUrl = 'http://124.158.11.215:9901/happyworld/user/getAllUser';
+    this.output = this.httpClient.post(this.apiUrl, jsonInput, { headers: headers }).pipe(
+      timeout(120000)
+    );
+    await this.output.toPromise()
+      .then(res => {
+        console.log("GetUserByUsername output: " + res.data);
+        this.glb.setLstData(res.data.content);
+      })
+      .catch(err => {
+        if (err.status !== 403) {
+          console.log("GetUserByUsername...failed. Error: " + err.message);
+          this.displayAlert("Có lỗi xảy ra, vui lòng thử lại sau.");
+          this.dismissModal();
+        }
+      });
+  }
+
+  async UpdateUser(username, fullName, email, phone, status, balance){
+    this.validateToken();
+    const headers = { 'content-type': 'application/json', 'Authorization': 'Bearer ' + this.glb.getJwtTokenKey() };
+    let input = {
+      username: username,
+      fullName: fullName,
+      email: email,
+      phone: phone,
+      status: status,
+      balance: balance
+    }
+    let jsonInput = JSON.stringify(input);
+    console.log("UpdateUser input: " + jsonInput);
+    this.apiUrl = 'http://124.158.11.215:9901/happyworld/user/updateUser';
+    this.output = this.httpClient.post(this.apiUrl, jsonInput, { headers: headers }).pipe(
+      timeout(120000)
+    );
+    await this.output.toPromise()
+      .then(res => {
+        console.log("UpdateUser output: " + res.data);
+        this.glb.setDataObject(res.data);
+      })
+      .catch(err => {
+        if (err.status !== 403) {
+          console.log("UpdateUser...failed. Error: " + err.message);
+          this.displayAlert("Có lỗi xảy ra, vui lòng thử lại sau.");
+          this.dismissModal();
+        }
+      });
+  }
+
+  async TestUploadFile(avatar: File){
+    debugger
+    let formData = new FormData();
+    if(avatar[0] instanceof Blob){
+      console.log("true");
+    }
+    let name = avatar[0].name;
+    formData.append("avatar", avatar[0], name);
+    this.apiUrl = 'http://124.158.11.215:9901/happyworld/file/fileUpload';
+    this.output = this.httpClient.post(this.apiUrl, formData).pipe(
+      timeout(120000)
+    );
+    await this.output.toPromise()
+      .then(res => {
+        debugger
+        console.log("UpdateUser output: " + res.data);
+        this.glb.setDataObject(res.data);
+      })
+      .catch(err => {
+        if (err.status !== 403) {
+          console.log("UpdateUser...failed. Error: " + err.message);
+          this.displayAlert("Có lỗi xảy ra, vui lòng thử lại sau.");
+          this.dismissModal();
+        }
+      });
+  }
+
+  async searchNews(pageIndex,  pageSize) {
+    this.validateToken();
+    const headers = { 'content-type': 'application/json', 'Authorization': 'Bearer ' + this.glb.getJwtTokenKey() };
+    let input = {
+      status: 1,
+      pageIndex: pageIndex,
+      pageSize: pageSize
+    }
+    let jsonInput = JSON.stringify(input);
+    console.log("searchNews input: " + jsonInput);
+    this.apiUrl = 'http://124.158.11.215:9901/happyworld/newsmanager/searchNews';
+    this.output = this.httpClient.post(this.apiUrl, jsonInput, { headers: headers }).pipe(
+      timeout(120000)
+    );
+    await this.output.toPromise()
+      .then(res => {
+        console.log("searchNews output: " + res.data);
+        this.glb.setLstData(res.data.content);
+      })
+      .catch(err => {
+        if (err.status !== 403) {
+          console.log("searchNews...failed. Error: " + err.message);
+          this.displayAlert("Có lỗi xảy ra, vui lòng thử lại sau.");
+        }
+      })
+  }
+
+  async searchProject(pageIndex,  pageSize) {
+    this.validateToken();
+    const headers = { 'content-type': 'application/json', 'Authorization': 'Bearer ' + this.glb.getJwtTokenKey() };
+    let input = {
+      status: 1,
+      pageIndex: pageIndex,
+      pageSize: pageSize
+    }
+    let jsonInput = JSON.stringify(input);
+    console.log("searchProject input: " + jsonInput);
+    this.apiUrl = 'http://124.158.11.215:9901/happyworld/project/searchProject';
+    this.output = this.httpClient.post(this.apiUrl, jsonInput, { headers: headers }).pipe(
+      timeout(120000)
+    );
+    await this.output.toPromise()
+      .then(res => {
+        console.log("searchProject output: " + res.data);
+        this.glb.setLstData(res.data.content);
+      })
+      .catch(err => {
+        if (err.status !== 403) {
+          console.log("searchProject...failed. Error: " + err.message);
+          this.displayAlert("Có lỗi xảy ra, vui lòng thử lại sau.");
+        }
+      })
+  }
+
+  async getNewsById(id) {
+    this.validateToken();
+    const headers = { 'content-type': 'application/json', 'Authorization': 'Bearer ' + this.glb.getJwtTokenKey() };
+    let input = {
+      id: id
+    }
+    let jsonInput = JSON.stringify(input);
+    console.log("getNewsById input: " + jsonInput);
+    this.apiUrl = 'http://124.158.11.215:9901/happyworld/newsmanager/getNewsById';
+    this.output = this.httpClient.post(this.apiUrl, jsonInput, { headers: headers }).pipe(
+      timeout(120000)
+    );
+    await this.output.toPromise()
+      .then(res => {
+        console.log("getNewsById output: " + res.data);
+        this.glb.setDataObject(res.data);
+      })
+      .catch(err => {
+        if (err.status !== 403) {
+          console.log("getNewsById...failed. Error: " + err.message);
+          this.displayAlert("Có lỗi xảy ra, vui lòng thử lại sau.");
+        }
+      })
+  }
+
+  async searchNewsByCatId(title, catId, pageIndex,  pageSize) {
+    this.validateToken();
+    console.log("ID: " + catId);
+    const headers = { 'content-type': 'application/json', 'Authorization': 'Bearer ' + this.glb.getJwtTokenKey() };
+    let input = {
+      title: title,
+      categoryId: catId,
+      status: 1,
+      pageIndex: pageIndex,
+      pageSize: pageSize
+    }
+    let jsonInput = JSON.stringify(input);
+    console.log("searchNewsByCatId input: " + jsonInput);
+    this.apiUrl = 'http://124.158.11.215:9901/happyworld/newsmanager/searchNews';
+    this.output = this.httpClient.post(this.apiUrl, jsonInput, { headers: headers }).pipe(
+      timeout(120000)
+    );
+    await this.output.toPromise()
+      .then(res => {
+        console.log("searchNewsByCatId output: " + res.data);
+        this.glb.setLstData(res.data.content);
+      })
+      .catch(err => {
+        if (err.status !== 403) {
+          console.log("searchNewsByCatId...failed. Error: " + err.message);
+          this.displayAlert("Có lỗi xảy ra, vui lòng thử lại sau.");
+        }
+      })
+  }
+
+  async searchNotification(type, pageIndex,  pageSize) {
+    this.validateToken();
+    const headers = { 'content-type': 'application/json', 'Authorization': 'Bearer ' + this.glb.getJwtTokenKey() };
+    let input = {
+      type: type,
+      pageIndex: pageIndex,
+      pageSize: pageSize
+    }
+    let jsonInput = JSON.stringify(input);
+    console.log("searchNotification input: " + jsonInput);
+    this.apiUrl = 'http://124.158.11.215:9901/happyworld/notification/searchNotif';
+    this.output = this.httpClient.post(this.apiUrl, jsonInput, { headers: headers }).pipe(
+      timeout(120000)
+    );
+    await this.output.toPromise()
+      .then(res => {
+        console.log("searchNotification output: " + res.data);
+        this.glb.setLstData(res.data.content);
+      })
+      .catch(err => {
+        if (err.status !== 403) {
+          console.log("searchNotification...failed. Error: " + err.message);
+          this.displayAlert("Có lỗi xảy ra, vui lòng thử lại sau.");
+        }
+      })
+  }
+
+  async countUnreadNotif(type, status, pageIndex,  pageSize) {
+    this.validateToken();
+    const headers = { 'content-type': 'application/json', 'Authorization': 'Bearer ' + this.glb.getJwtTokenKey() };
+    let input = {
+      type: type,
+      status: status,
+      pageIndex: pageIndex,
+      pageSize: pageSize
+    }
+    let jsonInput = JSON.stringify(input);
+    console.log("searchNotification input: " + jsonInput);
+    this.apiUrl = 'http://124.158.11.215:9901/happyworld/notification/searchNotif';
+    this.output = this.httpClient.post(this.apiUrl, jsonInput, { headers: headers }).pipe(
+      timeout(120000)
+    );
+    await this.output.toPromise()
+      .then(res => {
+        console.log("searchNotification output: " + res.data);
+        this.glb.setLstData(res.data.content);
+      })
+      .catch(err => {
+        if (err.status !== 403) {
+          console.log("searchNotification...failed. Error: " + err.message);
+          this.displayAlert("Có lỗi xảy ra, vui lòng thử lại sau.");
+        }
+      })
+  }
+
+  async changeNotifStatus(notifId) {
+    this.validateToken();
+    const headers = { 'content-type': 'application/json', 'Authorization': 'Bearer ' + this.glb.getJwtTokenKey() };
+    let input = {
+      id: notifId
+    }
+    let jsonInput = JSON.stringify(input);
+    console.log("changeNotifStatus input: " + jsonInput);
+    this.apiUrl = 'http://124.158.11.215:9901/happyworld/notification/changeNotifStatus';
+    this.output = this.httpClient.post(this.apiUrl, jsonInput, { headers: headers }).pipe(
+      timeout(120000)
+    );
+    await this.output.toPromise()
+      .then(res => {
+        console.log("changeNotifStatus output: " + res.data);
+      })
+      .catch(err => {
+        if (err.status !== 403) {
+          console.log("changeNotifStatus...failed. Error: " + err.message);
+          this.displayAlert("Có lỗi xảy ra, vui lòng thử lại sau.");
+        }
+      })
+  }
+
+  async getNotifById(notifId) {
+    this.validateToken();
+    const headers = { 'content-type': 'application/json', 'Authorization': 'Bearer ' + this.glb.getJwtTokenKey() };
+    let input = {
+      id: notifId
+    }
+    let jsonInput = JSON.stringify(input);
+    console.log("getNotifById input: " + jsonInput);
+    this.apiUrl = 'http://124.158.11.215:9901/happyworld/notification/getNotifById';
+    this.output = this.httpClient.post(this.apiUrl, jsonInput, { headers: headers }).pipe(
+      timeout(120000)
+    );
+    await this.output.toPromise()
+      .then(res => {
+        console.log("getNotifById output: " + res.data);
+        this.glb.setDataObject(res.data);
+      })
+      .catch(err => {
+        if (err.status !== 403) {
+          console.log("getNotifById...failed. Error: " + err.message);
+          this.displayAlert("Có lỗi xảy ra, vui lòng thử lại sau.");
+        }
+      })
+  }
+
+  async getListUserOther() {
+    this.validateToken();
+    const headers = { 'content-type': 'application/json', 'Authorization': 'Bearer ' + this.glb.getJwtTokenKey() };
+    let input = {
+      username: this.glb.getUsername()
+    }
+    let jsonInput = JSON.stringify(input);
+    this.apiUrl = 'http://124.158.11.215:9901/happyworld/user/getListUser';
+    this.output = this.httpClient.post(this.apiUrl, jsonInput, { headers: headers }).pipe(
+      timeout(120000)
+    );
+    await this.output.toPromise()
+      .then(res => {
+        console.log("getListUser output: " + res.data);
+        this.glb.setLstData(res.data);
+      })
+      .catch(err => {
+        if (err.status !== 403) {
+          console.log("getListUser...failed. Error: " + err.message);
+          this.displayAlert("Có lỗi xảy ra, vui lòng thử lại sau.");
+        }
+      })
+  }
+  
 }

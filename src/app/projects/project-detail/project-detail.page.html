@@ -1,26 +1,29 @@
 <ion-content>
-  <div id="huongdan">
-    <div class="prevdn" (click)="goback()"><a><img class="imgback" src="../../../assets/naptien/icon-prev.jpg" alt="prev" /></a></div>
-    <div class="menu"><a></a></div>
-    <div class="content-huongdan">
-      <h2>{{dataObj.name}}</h2>
-      <p>
-        {{dataObj.shortDescription}}
-      </p>
-      <p>{{dataObj.description}}</p>
-    </div>
-    <br/>
-    <h2 style="padding-left: 10px;">Thông tin cổ phiếu</h2>
-    <div class="content-stockInfo"  style="padding: 10px;">
-      <h2>Mã cổ phiếu phát hành: {{stockData.code}}</h2>
-      <h2>Khối lượng phát hành: {{stockData.outstandingShares | number}}</h2>
-      <h2>Chủ đầu tư: {{stockData.owner}}</h2>
-      <h2>Giá tham chiếu: {{stockData.referrencePrice | number}}</h2>
-      <h2>Giá trần: {{stockData.ceilingPrice | number}}</h2>
-      <h2>Giá sàn: {{stockData.floorPrice | number}}</h2>
-      <h2>Dư mua: {{stockData.overbought | number}}</h2>
-      <h2>Dư bán: {{stockData.excessSale | number}}</h2>
-      <h2>Khớp lệnh: {{stockData.matchOrder | number}}</h2>
-    </div>
+  <div id="huongdan" style="width:100%; height: 100%;">
+    <ion-content style="width:100%; height: 12%">
+      <div class="prevdn" (click)="goback()"><a><img class="imgback" src="../../../assets/naptien/icon-prev.jpg" alt="prev" /></a></div>
+      <div class="menu"><a></a></div>
+    </ion-content>
+    <ion-content style="width:100%; height: 88%">
+      <div class="content-huongdan">
+        <h2>{{dataObj.name}}</h2>
+        <p [innerHTML] = "sanitizer.bypassSecurityTrustHtml(dataObj.description)">{{dataObj.description}}</p>
+      </div>
+      <br/>
+      <h2 style="padding-left: 10px;">Thông tin cổ phiếu</h2>
+      <div class="content-stockInfo"  style="padding: 10px;">
+        <h2>Mã cổ phiếu phát hành: {{stockData.code}}</h2>
+        <h2>Khối lượng phát hành: {{stockData.outstandingShares | number}}</h2>
+        <h2>Chủ đầu tư: {{stockData.owner}}</h2>
+        <h2>Giá tham chiếu: {{stockData.referrencePrice | number}}</h2>
+        <h2>Giá trần: {{stockData.ceilingPrice | number}}</h2>
+        <h2>Giá sàn: {{stockData.floorPrice | number}}</h2>
+        <h2>Dư mua: {{stockData.overbought | number}}</h2>
+        <h2>Dư bán: {{stockData.excessSale | number}}</h2>
+        <h2>Khớp lệnh: {{stockData.matchOrder | number}}</h2>
+      </div>
+    </ion-content>
+    
+    
   </div>
 </ion-content>

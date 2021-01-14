@@ -1,26 +1,37 @@
 <ion-content>
-  <div id="container-chude">
-    <div class="wrapper">
-      <div class="prevdn" (click)="goback()"><a><img class="imgback" src="../../assets/naptien/icon-prev.jpg" alt="prev" /></a></div>
-      <div class="header-search">
-        <form>
-          <ion-input type="text" placeholder="Tìm kiếm"></ion-input>
-          <button class="btn btn-danger" type="submit"><img src="../../assets/cacchude/search-icon.png" alt="Search" /></button>
-        </form>
-      </div>
-      
-      <div class="noidungchude">
-        <div class="rowchude" *ngFor="let data of lstData">
-          <div class="imgtin" (click)="goToDetail(data.id)"><img src="../../assets/cacchude/img-tintuc.jpg" alt="Các chủ đề" /></div>
-          <div class="noidungtin" (click)="goToDetail(data.id)">
-            <h3><a>{{data.name}}</a></h3>
-            <div class="datetime"><span>{{data.createdDate | date : 'dd/MM/yyyy'}}</span></div>
-            <div class="description-tin">{{data.shortDescription}}
+  <div id="container-chude" style="width:100%; height: 100%">
+    <div class="wrapper" style="width:100%; height: 100%">
+      <ion-content style="width: 100%; height: 12%">
+        <div class="prevdn" (click)="goback()"><a><img class="imgback" src="../../assets/naptien/icon-prev.jpg" alt="prev" /></a></div>
+        <div class="header-search">
+          <form>
+            <ion-input type="text" placeholder="Tìm kiếm" [(ngModel)]="searchInput"></ion-input>
+            <button class="btn btn-danger" type="submit"><img src="../../assets/cacchude/search-icon.png" alt="Search" (click)="handleSearch()" /></button>
+          </form>
+        </div>
+      </ion-content>
+      <ion-content style="width:100%; height: 88%;">
+        <div class="noidungchude">
+          <div class="rowchude" *ngFor="let data of lstData">
+            <div class="imgtin" (click)="goToDetail(data.id)"><img src="../../assets/imgDuAn.jpg" alt="Các chủ đề" /></div>
+            <div class="noidungtin" (click)="goToDetail(data.id)">
+              <h3><a>{{data.name.substring(0, 25)}}...</a></h3>
+              <div class="datetime"><span>{{data.createdDate | date : 'dd/MM/yyyy'}}</span></div>
+              <!-- <div class="description-tin" [innerHTML]="data.description.substring(0,100)">{{data.description.substring(0, 100)}}
+              </div> -->
             </div>
           </div>
+
+          <ion-infinite-scroll threshold="50px" (ionInfinite)="loadMoreData($event)">
+            <ion-infinite-scroll-content
+              loadingSpinner="bubbles"
+              loadingText="Loading more data...">
+            </ion-infinite-scroll-content>
+          </ion-infinite-scroll>
+          
         </div>
-        
-      </div>
+      </ion-content>
+      
       
     </div>
 

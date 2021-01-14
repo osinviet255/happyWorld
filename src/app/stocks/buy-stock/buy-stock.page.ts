@@ -1,3 +1,4 @@
+import { NavController } from '@ionic/angular';
 import { Entities } from './../../entities/Entities';
 import { Controller } from './../../BSL/controller';
 import { Component } from '@angular/core';
@@ -12,13 +13,16 @@ export class BuyStockPage {
 
   constructor(private ctl: Controller,
     private glb: Entities,
-    private cmd: common) { }
+    private cmd: common,
+    private nav: NavController) { }
 
   lstStock: [];
   stockInfo: any;
   stockData: any;
   moneyInput: any;
   moneyValue: any;
+  moneyTarget: any;
+  tencpbuy: any;
   ionViewWillEnter() {
     //Load list Stock has status = 1 (Da duyet)
     this.ctl.LoadConfirmStock().then(() => {
@@ -26,7 +30,6 @@ export class BuyStockPage {
     });    
     this.ctl.getStockByCode("").then(() => {
       this.stockData = this.glb.getDataObject();
-      console.log(this.stockData.outstandingShares);
     });
   }
 
@@ -57,33 +60,53 @@ export class BuyStockPage {
   handleClick(event, item) {
     const parent = document.getElementById('listStock') as HTMLElement;
     parent.style.display = 'block'
-    const input = document.querySelector('ion-input');
-    input.value = item;
+    // const input = document.querySelector('ion-input');
+    // input.value = item;
+    this.tencpbuy = item;
+    // const tencp = document.getElementById('ten_cpbuy') as HTMLElement;
+    // tencp.value = item;
     parent.style.display = 'none';
     this.ctl.getStockByCode(item).then(() => {
       this.stockData = this.glb.getDataObject();
-      console.log(this.stockData.outstandingShares);
     });
     const parent2 = document.getElementById('stockInfo') as HTMLElement;
     parent2.style.display = 'block'
   }
 
   updateList(ev) {
+    this.moneyTarget = this.moneyValue;
     this.moneyValue = this.cmd.currencyFormatted(ev.target.value)
   }  
 
   handleThanhtoan(stocknum){
-    stocknum = stocknum.toString().replaceAll(".","");
-    if(!Number(stocknum)){
-      this.ctl.displayAlert("Số lượng cổ phiếu không hợp lệ, vui lòng kiểm tra lại");
-    }
-    else if(stocknum <= 0){
-      this.ctl.displayAlert("Số lượng cổ phiếu không hợp lệ, số lượng phải lớn hơn 0");
+    if(stocknum === undefined){
+      this.ctl.displayAlert("Số lượng cổ phiếu không được bỏ trống, vui lòng kiểm tra lại.");
     }
     else{
-      const input = document.querySelector('ion-input');
-      this.ctl.BuyStock(input.value, stocknum);
+      stocknum = stocknum.toString().replace(".", '').replace(".", '').replace(".", '').replace(".", '').replace(".", '').replace(".", '').replace(".", '').replace(".", '').replace(".", '').replace(".", '');
+      if(!Number(stocknum) || stocknum.toString() === ""){
+        this.ctl.displayAlert("Số lượng cổ phiếu không hợp lệ, vui lòng kiểm tra lại");
+      }
+      else if(stocknum <= 0){
+        this.ctl.displayAlert("Số lượng cổ phiếu không hợp lệ, số lượng phải lớn hơn 0");
+      }
+      else{
+        if(this.tencpbuy === undefined || this.tencpbuy === ''){
+          this.ctl.displayAlert("Mã cổ phiếu không được bỏ trống.");
+        }
+        else{
+          this.ctl.BuyStock(this.tencpbuy, stocknum).then(() => {
+            this.nav.pop();
+          });
+        }
+        
+      }
     }
+    
+  }
+
+  goBack(){
+    this.nav.pop();
   }
 
 }

@@ -1,9 +1,9 @@
   <ion-content>
-    <ion-content style="height: 15%;">
+    <ion-content style="height: 17%;">
       <div class="wrapper">
         <div class="header-search">
           <form>
-            <ion-searchbar #inputSearch placeholder="Tìm kiếm"></ion-searchbar>
+            <ion-searchbar #inputSearch placeholder="Tìm kiếm" (search)="handleSearch()" [(ngModel)]="searchInput" [ngModelOptions]="{standalone: true}"></ion-searchbar>
           </form>
         </div>
         <div class="header-title" (click)="goBack()"><a>
@@ -13,7 +13,7 @@
         </div>
       </div>
     </ion-content>
-    <ion-content style="height: 85%;">  
+    <ion-content style="height: 83%;">  
       <div class="lichsugiaodich">
         <div class="rowlichsu1">
           <div class="wrapper">

@@ -1,0 +1,54 @@
+<ion-content>
+  <ion-content style="width: 100%; height: 20%;">
+    <div id="topheader">
+      <div class="wrapper">
+        <div class="lefttoptb" (click)="goBack()"><a><img src="../../assets/icon-prev.png" alt="prev" /></a></div>
+        <div class="centertoptb">Thông báo</div>
+        <div class="thongbao">
+          <div class="count-thongbao"><span>{{notifCount}}</span></div>
+        </div>
+      </div>
+    </div>
+    <div id="tabthongbao">
+      <div id="tabAdmin" class="tabtb1" (click)="getNotifAdmin()"><a>Thông báo Admin</a></div>
+      <div id="tabApp" class="tabtb2" (click)="getNotifApp()"><a>Thông báo ứng dụng</a></div>
+      <div id="tabAll" class="tabtb3 active" (click)="getNotifAll()"><a>Tất cả</a></div>
+    </div>
+  </ion-content>
+  <ion-content style="width: 100%; height: 80%;">
+    <div id="container-thongbao">
+      <div class="wrapper" *ngFor="let data of lstNotification">
+        <div class="topcontent">
+          <div class="left_topcontent"><a></a></div>
+          <div class="right_topcontent">{{data.createdDate | date : 'dd/MM/yyyy HH:mm:ss'}}</div>
+        </div>
+  
+        <div class="content" *ngIf="data.status === 1; else unread"  (click)="gotoDetail(data.id)">
+          <img src="../../assets/imgDuAn.jpg" />
+          <div [innerHTML]="data.shortDescription">
+            {{data.shortDescription}}
+          </div>
+          <br />
+          <div [innerHTML]="data.content">
+            {{data.content}}
+          </div>
+        </div>
+  
+        <ng-template #unread>
+          <div class="content" style="background: #dfe7f4"  (click)="gotoDetail(data.id)">
+            <img src="../../assets/imgDuAn.jpg" />
+            <div [innerHTML]="data.shortDescription">
+              {{data.shortDescription}}
+            </div>
+            <br />
+            <div [innerHTML]="data.content">
+              {{data.content}}
+            </div>
+  
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </ion-content>
+  
+</ion-content>

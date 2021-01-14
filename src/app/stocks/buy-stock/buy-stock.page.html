@@ -1,31 +1,40 @@
 
 <ion-content>
   
-  <div id="container-dscophieu">
-    <div (click)="dismissModal()" style="padding-left: 17px;
-  padding-top: 14px;
-  font-size: 15px;
-  color: #fff;
-  margin-bottom: -14px;">Close</div>
+  <div id="container-dscophieu" style="width: 100%; height: 100%;">
+    
+  <ion-content style="width:100%; height: 5%; --background: #ffffff url(../../../assets/bg-dangnhap.png) no-repeat top">
+    <div id="topheader">
+      <div class="wrapper">
+             <div class="lefttoptb" (click)="goBack()" style="margin-top: 10px; margin-left: 10px;"><a><img src="../../assets/icon-prev.png" alt="prev" /></a></div>
+        </div>	
+    </div>
+  </ion-content>
+  <ion-content style="width: 100%; height: 95%; --background: #ffffff url(../../../assets/bg-dangnhap.png) no-repeat top;">
     <div class="wrapper">
-     	<div class="logo-gioithieu"><a><img src="../../../assets/logo.png" alt="Logo" /></a></div> 
-         <div class="dscophieu-buy">
-      		<h1>THÔNG TIN CỔ PHIẾU</h1>
-            <form action="" method="post">
-              <ion-input type="text" name="ten_cpbuy" id="ten_cpbuy" value="" (ionInput)='handleInput($event);' placeholder="Mã cổ phiếu"></ion-input>
-              <ion-list id="listStock" style="display:none;">
-                <ion-item *ngFor="let item of lstStock" (click)='handleClick($event, item.code)'>{{ item.code }} - {{item.owner}}</ion-item>
-              </ion-list>
+      <div class="logo-gioithieu"><a><img src="../../../assets/logo.png" alt="Logo" /></a></div> 
+        <div class="dscophieu-buy">
+         <h1>THÔNG TIN CỔ PHIẾU</h1>
+           <form action="" method="post">
+             <ion-input type="text" name="ten_cpbuy" id="ten_cpbuy" [(ngModel)]="tencpbuy" value="" (ionInput)='handleInput($event);' placeholder="Mã cổ phiếu"></ion-input>
+             <ion-list id="listStock" style="display:none;">
+               <ion-item *ngFor="let item of lstStock" (click)='handleClick($event, item.code)'>{{ item.code }} - {{item.owner}}</ion-item>
+             </ion-list>
+             <div *ngIf="stockData !== undefined">
               <ion-list id="stockInfo" style="display:none;">
                 <ion-item>Số lượng cổ phiếu phát hành: {{stockData.outstandingShares | number}}</ion-item>
                 <ion-item>Khớp lệnh: {{stockData.matchOrder | number}} VNĐ</ion-item>
               </ion-list>
-                <ion-input name="sl_cpbuy"  id="sl_cpbuy" appIntegerInput inputmode="number" maxlength="15" type="text" (keyup)="updateList($event)" [value]="moneyValue" placeholder="Số lượng"></ion-input>
-                <input type="button" id="btm_thanhtoan" value="THANH TOÁN" (click)="handleThanhtoan(moneyValue)" />
-            </form>
-      	 </div>
-         	
-    </div>
+             </div>
+             
+               <ion-input name="sl_cpbuy"  id="sl_cpbuy" appIntegerInput inputmode="number" maxlength="15" type="text" (keyup)="updateList($event)" [value]="moneyValue" placeholder="Số lượng"></ion-input>
+               <input type="button" id="btm_thanhtoan" value="THANH TOÁN" (click)="handleThanhtoan(moneyValue)" />
+           </form>
+        </div>
+          
+   </div>
+  </ion-content>
+    
   
     
 </div>

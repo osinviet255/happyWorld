@@ -66,14 +66,16 @@ export class TabsPage {
         {
           text: 'Mua cổ phiếu',
           handler: () => {
-            this.ctl.showModalBuyStock();
+            // this.ctl.showModalBuyStock();
+            this.router.navigateByUrl('buy-stock');
           }
         },
         {
           text: 'Bán cổ phiếu',
           handler: () => {
             console.log('Bán cổ phiếu clicked');
-            this.ctl.showModalSellStock();
+            // this.ctl.showModalSellStock();
+            this.router.navigateByUrl('sell-stock');
           }
         },
         {

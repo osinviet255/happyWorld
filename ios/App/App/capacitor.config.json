@@ -1,12 +1,19 @@
 {
   "appId": "io.ionic.happyworld",
-  "appName": "happyWorld",
+  "appName": "Happy World",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",
   "plugins": {
     "SplashScreen": {
       "launchShowDuration": 0
+    },
+    "PushNotifications": {
+      "presentationOptions": ["badge", "sound", "alert", "popup"]
+    },
+    "LocalNotifications": {
+      "smallIcon": "fcm_push_icon.png",
+      "iconColor": "#FF0000"
     }
   },
   "cordova": {}

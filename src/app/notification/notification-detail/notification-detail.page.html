@@ -1,0 +1,36 @@
+<ion-content>
+  <ion-content style="width: 100%; height: 10%;">
+    <div id="topheader">
+      <div class="wrapper">
+             <div class="lefttoptb" (click)="goBack()"><a><img src="../../assets/icon-prev.png" alt="prev" /></a></div> 
+             <div class="centertoptb">Thông báo</div>
+             <div class="thongbao">
+              <div class="count-thongbao"><span>{{notifCount}}</span></div>
+            </div>
+        </div>	
+    </div>
+  </ion-content>
+  <ion-content style="width: 100%; height: 90%;">
+    <div id="container-thongbao">
+      <div class="wrapper" *ngIf="notifData !== null && notifData !== undefined">
+         <div class="topcontent">
+            <div class="left_topcontent"><a></a></div>
+              <div class="right_topcontent">{{notifData.createdDate | date : 'dd/MM/yyyy HH:mm:ss'}}</div>
+          </div>
+
+          <div class="content">
+            <img src="../../assets/imgDuAn.jpg"/>
+            <div [innerHTML]="notifData.shortDescription">
+              {{notifData.shortDescription}}
+            </div>
+            <br/>
+            <div [innerHTML]="notifData.content">
+              {{notifData.content}}
+            </div>
+            
+          </div>
+      </div>  
+  </div>
+  </ion-content>
+  
+</ion-content>

@@ -1,3 +1,4 @@
+import { Entities } from './../entities/Entities';
 import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
 
@@ -8,7 +9,11 @@ import { NavController } from '@ionic/angular';
 })
 export class NewsPage {
 
-  constructor(public navCtrl: NavController) { }
+  dataObj: any;
+  constructor(public navCtrl: NavController,
+    private glb: Entities) { 
+    this.dataObj = this.glb.getDataObject();
+  }
 
   goback() {
     this.navCtrl.pop();

@@ -77,10 +77,40 @@ const routes: Routes = [
   {
     path: 'buy-stock',
     loadChildren: () => import('./stocks/buy-stock/buy-stock.module').then( m => m.BuyStockPageModule)
-  },  {
+  },
+  {
     path: 'sell-stock',
     loadChildren: () => import('./stocks/sell-stock/sell-stock.module').then( m => m.SellStockPageModule)
+  },
+  {
+    path: 'user-info',
+    loadChildren: () => import('./users/user-info/user-info.module').then( m => m.UserInfoPageModule)
+  },
+  {
+    path: 'user-edit',
+    loadChildren: () => import('./users/user-edit/user-edit.module').then( m => m.UserEditPageModule)
+  },
+  {
+    path: 'notification',
+    loadChildren: () => import('./notification/notification.module').then( m => m.NotificationPageModule)
+  },
+  {
+    path: 'list-news/:catId',
+    loadChildren: () => import('./news/list-news/list-news.module').then( m => m.ListNewsPageModule)
+  },
+  {
+    path: 'notification-detail/:notifId',
+    loadChildren: () => import('./notification/notification-detail/notification-detail.module').then( m => m.NotificationDetailPageModule)
+  },
+  {
+    path: 'add-conversation',
+    loadChildren: () => import('./add-conversation/add-conversation.module').then( m => m.AddConversationPageModule)
+  },
+  {
+    path: 'conversation-detail/:converKey/:nickname',
+    loadChildren: () => import('./conversation-detail/conversation-detail.module').then( m => m.ConversationDetailPageModule)
   }
+
 
   
  

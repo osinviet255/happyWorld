@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title style="text-align: center;">Thêm mới hội thoại</ion-title>
+    <ion-buttons left>
+      <ion-button (click)="dismisModal()" style="color: blue; margin-top: -25px;">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let data of lstUser" (click)="addConversations(data.username, data.fullname)">
+      <ion-label>
+        {{data.fullname}}
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

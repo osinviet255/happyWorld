@@ -1,7 +1,7 @@
 
 
-  <div id="container-groupchat">
-    <ion-content style="height: 7%;">
+  <div id="container-groupchat" style="width:100%; height: 100%">
+    <ion-content style="width: 100%; height: 7%;">
       <div class="wrapper">
         <div class="header-search">
                <form>
@@ -11,10 +11,10 @@
        </div>
      </div>
     </ion-content>
-    <ion-content>
+    <ion-content style="width: 100%; height: 43%">
       <div class="groupchat"> 
         <div class="wrapper">
-              <div class="livechat" style="margin-top: -11px;"><span>LIVE CHAT</span> <ion-icon name="add-circle-outline" style="margin-left: 5px; margin-bottom: -3px;" (click)="addRoom()"></ion-icon></div>
+              <div class="livechat" style="margin-top: -11px;"><span>GROUP CHAT</span> <ion-icon name="add-circle-outline" style="margin-left: 5px; margin-bottom: -3px;" (click)="addRoom()"></ion-icon></div>
               <div class="closegroup"><img src="../../assets/groupchat/icon-close.jpg" alt="Close" /></div>
           </div>
       </div>
@@ -35,6 +35,34 @@
              </div>
          </div>
       </div><!--list-groupchat-->
+    </ion-content>
+    <ion-content style="width: 100%; height: 50%;">
+      <div class="groupchat"> 
+        <div class="wrapper">
+              <div class="livechat"><span>LIVE CHAT</span></div>
+          </div>
+      </div>
+      <div class="list-groupchat">
+        <div class="linegroup" *ngFor="let conver of conversations">
+             <div class="wrapper" (click)="joinConversation(conver.key, conver.conversName)">	
+               <a>
+               <div class="avata-canhan"><img src="../../assets/groupchat/avata.png" alt="avata" /></div>
+                 <div class="thongtinnhom"> 
+                   <div class="tennhom">{{conver.conversName}}</div>
+                     <div class="tinnhan-new">{{conver.user}} {{conver.lastMsg}}</div>
+                 </div>
+                 <div class="time-tinnhan">
+                   <div class="timechat">{{conver.lastTime}}</div>
+                 </div>
+                 </a>
+             </div>
+         </div>
+      </div><!--list-groupchat-->
+      <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+        <ion-fab-button color="danger" (click)="showModal()">
+          <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
     </ion-content>
      
 </div>

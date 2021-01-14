@@ -1,0 +1,42 @@
+<ion-content>
+  <div class="header-title" (click)="goBack()" style="margin-top: -5px; margin-left: 10px;"><a>
+    <div class="prevtitle"><img style="width: 13px;
+      float: left;
+      margin-right: 5px;" src="../../assets/naptien/icon-prev.jpg" alt="Prev" /></div>
+    <h1 style="font-size: 20px;
+    color: #000;">Quay lại</h1>
+  </a>
+</div>
+  <div class="wrapper">
+    
+    <div class="profile-card js-profile-card">
+      <div class="profile-card__img">
+        <img src="http://api-prosup.1sg.vn/img/slide_1.jpg" alt="profile card">
+      </div>
+
+      <div class="profile-card__cnt js-profile-cnt" *ngFor="let item of lstData">
+        <div class="profile-card__name">
+          {{item.username}}
+        </div>
+        <div class="profile-card-inf__title pb-10">
+          <span class="fa fa-user"></span> Họ tên: {{item.fullname}}
+        </div>
+        <div class="profile-card-inf__title pb-10">
+          <span class="fa fa-map-marker"></span> Địa chỉ Email: {{item.email}}
+        </div>
+        <div class="profile-card-inf__title">
+          <span class="fa fa-phone"></span> Số điện thoại: {{item.phone}}
+        </div>
+
+        <div class="profile-card-inf__title">
+          <span class="far fa-money-bill-alt"></span> Số dư tài khoản hiện tại: {{item.balance | number}}
+        </div>
+
+        <div class="profile-card-ctr">
+          <button class="profile-card__button button--blue js-message-btn" (click)="gotoEdit()">Chỉnh sửa</button>
+          <button class="profile-card__button button--orange" (click)="logout($event)">Đăng xuất</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

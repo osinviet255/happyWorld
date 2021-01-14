@@ -1,13 +1,14 @@
 {
   "project_info": {
     "project_number": "1055941850262",
+    "firebase_url": "https://happyworld-98e22-default-rtdb.firebaseio.com",
     "project_id": "happyworld-98e22",
     "storage_bucket": "happyworld-98e22.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1055941850262:android:5a9cdbd701ec600d25feb7",
+        "mobilesdk_app_id": "1:1055941850262:android:334cc77d6f85e41925feb7",
         "android_client_info": {
           "package_name": "io.ionic.happyworld"
         }
@@ -29,6 +30,13 @@
             {
               "client_id": "1055941850262-m5g6k6mu3gdr66os38i3a57n7k5gqoa1.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "1055941850262-0cbfdtb7httuhd9bmivhca8v7iqsvatp.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "io.ionic.happyworld"
+              }
             }
           ]
         }

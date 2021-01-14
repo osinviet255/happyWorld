@@ -1,3 +1,4 @@
+import { Entities } from 'src/app/entities/Entities';
 import { Component } from '@angular/core';
 import { LoadingController, NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
@@ -10,7 +11,13 @@ import { Controller } from '../BSL/controller';
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController, private router: Router, private loadingNotif: LoadingController, private ctl: Controller) { }
+  constructor(public navCtrl: NavController, private router: Router, private loadingNotif: LoadingController, private ctl: Controller, private glb: Entities) { }
+  ionViewWillEnter(){
+    this.glb.getloadingNotif().dismiss();
+  }
+  ionViewDidEnter(){
+    this.glb.getloadingNotif().dismiss();
+  }
 
   goback() {
     this.navCtrl.pop();
@@ -36,7 +43,7 @@ export class LoginPage {
             translucent: true
           });
           await loading.present();
-          this.ctl.LoginApi(user, pass).then(res => {
+          this.ctl.LoginApi(user, pass).then(res => {            
             loading.dismiss();
           })
         }

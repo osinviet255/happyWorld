@@ -2,6 +2,7 @@ import { Controller } from './../../BSL/controller';
 import { Entities } from './../../entities/Entities';
 import { NavController } from '@ionic/angular';
 import { Component } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-project-detail',
@@ -14,7 +15,8 @@ export class ProjectDetailPage {
   stockData: any;
   constructor(private nav: NavController,
     private glb: Entities,
-    private ctl: Controller) {
+    private ctl: Controller,
+    private sanitizer: DomSanitizer) {
       this.dataObj = this.glb.getDataObject();
       this.stockData = this.glb.getDataObject();
       let projId = this.dataObj.idProject;

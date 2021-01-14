@@ -1,0 +1,41 @@
+<ion-content>
+  <div class="header-title" (click)="goBack()" style="margin-top: -5px; margin-left: 10px;"><a>
+    <div class="prevtitle"><img style="width: 13px;
+      float: left;
+      margin-right: 5px;" src="../../assets/naptien/icon-prev.jpg" alt="Prev" /></div>
+    <h1 style="font-size: 20px;
+    color: #000;">Quay lại</h1>
+  </a>
+</div>
+  <div class="wrapper">
+    
+    <div class="profile-card js-profile-card">
+      <div class="profile-card__img">
+        <img src="http://api-prosup.1sg.vn/img/slide_1.jpg" alt="profile card">
+      </div>
+
+      <div class="profile-card__cnt js-profile-cnt" *ngFor="let item of lstData">
+        <div class="profile-card__name">
+          {{item.username}}
+        </div>
+        <div class="profile-card-inf__title pb-10">
+           <ion-input class="editInput" placeholder="Họ tên" type="text" [(ngModel)]="fullName" maxlength="50" (input)="changeName()"></ion-input>
+           <div class="error" style="display: none;" id="errName">{{errorMesName}}</div>
+        </div>
+        <div class="profile-card-inf__title pb-10">
+           <ion-input class="editInput" placeholder="Địa chỉ Email" type="text" value="{{item.email}}" [(ngModel)]="email" maxlength="50" (input)="changeEmail()"></ion-input>
+           <div class="error" style="display: none;" id="errEmail">{{errorMesEmail}}</div>
+        </div>
+        <div class="profile-card-inf__title">
+           <ion-input class="editInput" placeholder="Số điện thoại" type="tel" [(ngModel)]="phone" value="{{item.phone}}" maxlength="10" (input)="changePhone()"></ion-input>
+           <div class="error" style="display: none;" id="errPhone">{{errorMesPhone}}</div>
+        </div>
+
+        <div class="profile-card-ctr" style="width: 100%;">
+          <button class="profile-card__button button--blue js-message-btn" (click)="handleEdit()">Cập nhật</button>
+          <button class="profile-card__button button--orange" (click)="goBack()">Huỷ bỏ</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

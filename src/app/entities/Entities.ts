@@ -15,7 +15,9 @@ export class Entities {
     dataObject: any;
     fullname: any;
     mobilNo: any;
+    notifCount: any;
     loadingNotif: LoadingController
+    conversationName: any;
 
     constructor(){
 
@@ -114,5 +116,21 @@ export class Entities {
 
     setloadingNotif(value){
         this.loadingNotif = value;
+    }
+
+    getNotifCount(){
+        return this.notifCount;
+    }
+
+    setNotifCount(value){
+        this.notifCount = value;
+    }
+
+    getconversationName(){
+        return this.conversationName;
+    }
+
+    setconversationName(value){
+        this.conversationName = value;
     }
 }

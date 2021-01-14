@@ -1,87 +1,68 @@
 <ion-content>
-  <div id="container-chude">
-    <div class="wrapper">
-      <div class="prevdn" (click)="goback()"><a><img class="imgback" src="../../assets/naptien/icon-prev.jpg" alt="prev" /></a></div>
-      <div class="header-search">
-        <form>
-          <ion-input type="text" placeholder="Tìm kiếm"></ion-input>
-          <button class="btn btn-danger" type="submit"><img src="../../assets/cacchude/search-icon.png" alt="Search" /></button>
-        </form>
-      </div>
-      <h1 class="titlechude">CÁC CHỦ ĐỀ</h1>
-      <div class="chude">
-        <ul class="">
-          <li class="tatca"><a>Tất cả</a></li>
-          <li class="duan"><a>Dự án</a></li>
-          <li class="tintuc"><a>Tin tức</a></li>
-        </ul>
-      </div>
-      <div class="cacchude-xemthem">
-        <h2>Dự án</h2>
-        <div class="xemthem-duan"><a>XEM THÊM</a></div>
-      </div>
-      <div class="noidungchude">
-        <div class="rowchude">
-          <div class="imgtin"><img src="../../assets/cacchude/img-tintuc.jpg" alt="Các chủ đề" /></div>
-          <div class="noidungtin">
-            <h3><a>Tiêu đề bài viết</a></h3>
-            <div class="datetime"><span>23/11/2020</span></div>
-            <div class="description-tin">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+  <div id="container-chude" style="width: 100%; height: 100%;">
+    <div class="wrapper" style="width: 95%; height: 100%;">
+      <ion-content style="width: 100%; height: 23%;">
+        <div class="prevdn" (click)="goback()"><a><img class="imgback" src="../../assets/naptien/icon-prev.jpg" alt="prev" /></a></div>
+        <!-- <div class="header-search">
+          <form>
+            <ion-input type="text" placeholder="Tìm kiếm"></ion-input>
+            <button class="btn btn-danger" type="submit"><img src="../../assets/cacchude/search-icon.png" alt="Search" /></button>
+          </form>
+        </div> -->
+        <h1 class="titlechude">CÁC CHỦ ĐỀ</h1>
+        <div class="chude">
+          <ul class="">
+            <li class="tatca" (click)="showAll()"><a>Tất cả</a></li>
+            <li class="duan" (click)="showProject()"><a>Dự án</a></li>
+            <li class="tintuc" (click)="showNews()"><a>Tin tức</a></li>
+          </ul>
+        </div>
+      </ion-content>
+      <ion-content style="width: 100%; height: 77%;">
+        <div id="idDuAn">
+          <div class="cacchude-xemthem">
+            <h2>Dự án</h2>
+            <div class="xemthem-duan" (click)="goToListProj()"><a>XEM THÊM</a></div>
+          </div>
+          <div class="noidungchude">        
+            <div class="rowchude" *ngFor="let data1 of lstProjects" (click)="goToDetailProj(data1.id)">
+              <div class="imgtin"><img src="../../assets/imgDuAn.jpg" alt="Các chủ đề" /></div>
+              <div class="noidungtin">
+                <h3><a>{{data1.name.substring(0, 25)}}</a></h3>
+                <div class="datetime"><span>{{data1.createdDate | date : 'dd/MM/yyyy'}}</span></div>
+                <!-- <div class="description-tin">{{data1.shortDescription}} -->
+                <!-- </div> -->
+              </div>
             </div>
           </div>
         </div>
-        <div class="rowchude">
-          <div class="imgtin"><img src="../../assets/cacchude/img-tintuc.jpg" alt="Các chủ đề" /></div>
-          <div class="noidungtin">
-            <h3><a>Tiêu đề bài viết</a></h3>
-            <div class="datetime"><span>23/11/2020</span></div>
-            <div class="description-tin">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+        
+        <div id="idTintuc">
+          <div class="cacchude-xemthem">
+            <h2>Tin tức</h2>
+            <div class="xemthem-duan" (click)="goToListNews()"><a>XEM THÊM</a></div>
+          </div>
+          <div class="noidungchude">
+            <div class="rowchude" *ngFor="let data of lstNews" (click)="goToDetailNews(data.id)">
+              <div class="imgtin" *ngIf="data.urlDescription !== null; else undefinedImg"><img src="{{data.urlDescription}}" alt="Các chủ đề" /></div>
+              <ng-template #undefinedImg>
+                <div class="imgtin"><img src="../../assets/imgDuAn.jpg" alt="Các chủ đề" /></div>
+              </ng-template>
+              <div class="noidungtin">
+                <h3><a>{{data.title.substring(0, 25)}}</a></h3>
+                <div class="datetime"><span>{{data.createdDate | date : 'dd/MM/yyyy'}}</span></div>
+                <div class="description-tin">{{data.description.substring(0, 100)}}
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="rowchude">
-          <div class="imgtin"><img src="../../assets/cacchude/img-tintuc.jpg" alt="Các chủ đề" /></div>
-          <div class="noidungtin">
-            <h3><a>Tiêu đề bài viết</a></h3>
-            <div class="datetime"><span>23/11/2020</span></div>
-            <div class="description-tin">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="cacchude-xemthem">
-        <h2>Tin tức</h2>
-        <div class="xemthem-duan"><a>XEM THÊM</a></div>
-      </div>
-      <div class="noidungchude">
-        <div class="rowchude">
-          <div class="imgtin"><img src="../../assets/cacchude/img-tintuc.jpg" alt="Các chủ đề" /></div>
-          <div class="noidungtin">
-            <h3><a>Tiêu đề bài viết</a></h3>
-            <div class="datetime"><span>23/11/2020</span></div>
-            <div class="description-tin">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-            </div>
-          </div>
-        </div>
-        <div class="rowchude">
-          <div class="imgtin"><img src="../../assets/cacchude/img-tintuc.jpg" alt="Các chủ đề" /></div>
-          <div class="noidungtin">
-            <h3><a>Tiêu đề bài viết</a></h3>
-            <div class="datetime"><span>23/11/2020</span></div>
-            <div class="description-tin">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-            </div>
-          </div>
-        </div>
-        <div class="rowchude">
-          <div class="imgtin"><img src="../../assets/cacchude/img-tintuc.jpg" alt="Các chủ đề" /></div>
-          <div class="noidungtin">
-            <h3><a>Tiêu đề bài viết</a></h3>
-            <div class="datetime"><span>23/11/2020</span></div>
-            <div class="description-tin">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-            </div>
-          </div>
-        </div>
-      </div>
+        
+      </ion-content>
+      
+
+
+      
     </div>
 
   </div>

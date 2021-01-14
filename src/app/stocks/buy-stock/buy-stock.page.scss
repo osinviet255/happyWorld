@@ -1,6 +1,7 @@
 #container-dscophieu{
-    background: #ffffff url(../../../assets/bg-dangnhap.png) no-repeat top;padding-bottom: 50%;    background-size: 100%;
+    --background: #ffffff url(../../../assets/bg-dangnhap.png) no-repeat top;    background-size: 100%;
 }
+
 #container-dscophieu .logo-gioithieu{    margin-bottom: 40%;  
     text-align: CENTER; }
 .dscophieu-buy h1{ font-size:24px ; color: #072b62; text-align: center;    margin-bottom: 30px;}
