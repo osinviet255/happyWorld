@@ -24,6 +24,7 @@ export class ListProjectPage {
     this.sub = this.route.params.subscribe(param => {
       this.projTypeId = param['projTypeId'];
       console.log("ProjTypeID: " + this.projTypeId);
+      this.pageIndex = 0;
       this.ctl.searchProjectByType(this.searchInput, this.projTypeId, this.pageIndex, 10).then(() => {
         this.lstData = this.glb.getLstData();
         if(this.lstData.length === 0){
@@ -52,15 +53,10 @@ export class ListProjectPage {
     this.pageIndex = this.pageIndex + 1;
     await new Promise(resolve => setTimeout(resolve, 1000));
     this.ctl.searchProjectByType(this.searchInput, this.projTypeId, this.pageIndex, 10).then(() => {
-      if(this.glb.getLstData().length === 0){
-        event.target.disabled = true;
+      for(let i =0; i < this.glb.getLstData().length; i++){
+        this.lstData.push(this.glb.getLstData()[i]);
       }
-      else{
-        for(let i =0; i < this.glb.getLstData().length; i++){
-          this.lstData.push(this.glb.getLstData()[i]);
-        }
-        event.target.complete();
-      }
+      event.target.complete();
       
     });
   }

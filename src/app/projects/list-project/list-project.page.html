@@ -5,7 +5,7 @@
         <div class="prevdn" (click)="goback()"><a><img class="imgback" src="../../assets/naptien/icon-prev.jpg" alt="prev" /></a></div>
         <div class="header-search">
           <form>
-            <ion-input type="text" placeholder="Tìm kiếm" [(ngModel)]="searchInput"></ion-input>
+            <ion-input type="text" placeholder="Tìm kiếm" [(ngModel)]="searchInput" [ngModelOptions]="{standalone: true}"></ion-input>
             <button class="btn btn-danger" type="submit"><img src="../../assets/cacchude/search-icon.png" alt="Search" (click)="handleSearch()" /></button>
           </form>
         </div>
@@ -15,7 +15,7 @@
           <div class="rowchude" *ngFor="let data of lstData">
             <div class="imgtin" (click)="goToDetail(data.id)"><img src="../../assets/imgDuAn.jpg" alt="Các chủ đề" /></div>
             <div class="noidungtin" (click)="goToDetail(data.id)">
-              <h3><a>{{data.name.substring(0, 25)}}...</a></h3>
+              <h3><a>{{data.name}}</a></h3>
               <div class="datetime"><span>{{data.createdDate | date : 'dd/MM/yyyy'}}</span></div>
               <!-- <div class="description-tin" [innerHTML]="data.description.substring(0,100)">{{data.description.substring(0, 100)}}
               </div> -->

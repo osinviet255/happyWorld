@@ -28,7 +28,7 @@
             <div class="rowchude" *ngFor="let data1 of lstProjects" (click)="goToDetailProj(data1.id)">
               <div class="imgtin"><img src="../../assets/imgDuAn.jpg" alt="Các chủ đề" /></div>
               <div class="noidungtin">
-                <h3><a>{{data1.name.substring(0, 25)}}</a></h3>
+                <h3><a>{{data1.name}}</a></h3>
                 <div class="datetime"><span>{{data1.createdDate | date : 'dd/MM/yyyy'}}</span></div>
                 <!-- <div class="description-tin">{{data1.shortDescription}} -->
                 <!-- </div> -->
