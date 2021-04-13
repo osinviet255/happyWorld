@@ -9,7 +9,7 @@
       "launchShowDuration": 0
     },
     "PushNotifications": {
-      "presentationOptions": ["badge", "sound", "alert", "popup"]
+      "presentationOptions": ["badge", "sound", "alert"]
     },
     "LocalNotifications": {
       "smallIcon": "fcm_push_icon.png",
